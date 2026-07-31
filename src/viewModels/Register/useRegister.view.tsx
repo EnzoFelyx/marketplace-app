@@ -1,19 +1,22 @@
-import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { RegisterFormData, registerScheme } from "./register.scheme"
+import { useForm } from "react-hook-form"
 import { useRegisterMutation } from "../../shared/queries/auth/use-register.mutation"
+import { useUserStore } from "../../shared/store/user-store"
+import { RegisterFormData, registerScheme } from "./register.scheme"
 
 export const useRegisterViewModal = () => {
 
     const userRegisterMutation = useRegisterMutation()
 
+    const { setSession, user } = useUserStore()
+
     const { control, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
         resolver: yupResolver(registerScheme),
         defaultValues: {
-            name: "testenzo",
-            email: "testenzo@gmail.com",
-            password: "123123",
-            confirmPassword: "123123",
+            name: "testenzou",
+            email: "testenzos@gmail.com",
+            password: "1231234",
+            confirmPassword: "1231234",
             phone: "13999999999"
         }
     })
@@ -21,12 +24,16 @@ export const useRegisterViewModal = () => {
     const onSubmit = handleSubmit(
         async (useData) => {
             const { confirmPassword, ...registerData } = useData
-            await userRegisterMutation.mutateAsync(registerData)
+            const mutationResponse = await userRegisterMutation.mutateAsync(registerData)
+            setSession({
+                refreshToken: mutationResponse.refreshToken,
+                token: mutationResponse.token,
+                user: mutationResponse.user
+            })
         },
-        (validationErrors) => {
-            console.log("❌ Validação falhou:", validationErrors)
-        }
     )
+
+    console.log('logado:', user) 
 
     return {
         control,

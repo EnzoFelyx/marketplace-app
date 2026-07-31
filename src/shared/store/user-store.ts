@@ -1,7 +1,7 @@
-import { create } from "zustand"
-import {persist, createJSONStorage} from "zustand/middleware"
-import { UserInterface } from "../interface/user"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import { create } from "zustand"
+import { createJSONStorage, persist } from "zustand/middleware"
+import { UserInterface } from "../interface/user"
 
 export interface UserStore {
     user: UserInterface | null
@@ -28,7 +28,11 @@ export const useUserStore = create<UserStore>()(persist((set) => ({
     token: null,
     refreshToken: null,
 
-    logout: () => { },
+    logout: () => set({
+        user: null,
+        token: null,
+        refreshToken: null,
+    }),
     setSession: (sessionData) => set({ ...sessionData }),
     updateTokens: (updateTokensData) => set({ ...updateTokensData })
 }), {

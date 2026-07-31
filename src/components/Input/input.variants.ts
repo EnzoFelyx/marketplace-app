@@ -10,7 +10,10 @@ export const inputVariants = tv({
     },
     variants: {
         isFocused: {
-            true: {},
+            true: {
+                wrapper: "border-purple-base",
+                label: "text-purple-base"
+            },
         },
         isError: {
             true: {}

@@ -1,5 +1,5 @@
-import { RegisterView } from "../viewModels/Register/Register.viewModal";
-import { useRegisterViewModal } from "../viewModels/Register/useRegister.view";
+import { RegisterView } from "../viewModels/Register/Register.view";
+import { useRegisterViewModal } from "../viewModels/Register/useRegister.viewModel";
 
 export default function Register() {
 

@@ -6,7 +6,7 @@ import { FC } from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 import { useLoginViewModel } from "./useLogin.viewModel"
 
-export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({ control, handleSubmit }) => {
+export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({ control, onSubmit }) => {
     return (
         <KeyboardContainer>
             <View className="flex-1 justify-center items-center px-[40px]">
@@ -32,6 +32,10 @@ export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({ control, h
                     secureTextEntry
                     placeholder="Sua senha"
                 />
+
+                <TouchableOpacity onPress={onSubmit}>
+                    <Text>Login</Text>
+                </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => router.push("/register")}>
                     <Text>Registro</Text>

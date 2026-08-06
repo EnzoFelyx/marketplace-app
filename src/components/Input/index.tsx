@@ -81,12 +81,16 @@ export const Input: FC<InputProps> = ({
                 />
                 {secureTextEntry &&
                     <TouchableOpacity activeOpacity={0.7} onPress={handlePasswordToggle}>
-                        <Ionicons name={!showPassword ? "eye-off-outline" : "eye-outline"} size={22} />
+                        <Ionicons
+                            name={!showPassword ? "eye-off-outline" : "eye-outline"}
+                            size={22}
+                            color={getIconColor()}
+                        />
                     </TouchableOpacity>
                 }
                 {rightIcon &&
                     <TouchableOpacity>
-                        <Ionicons name={rightIcon} size={22} />
+                        <Ionicons name={rightIcon} size={22} color={getIconColor()} />
                     </TouchableOpacity>
                 }
             </Pressable>

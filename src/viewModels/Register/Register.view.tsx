@@ -1,8 +1,9 @@
 import { AuthFormHeader } from "@/components/AuthFormHeader";
+import { Button } from "@/components/Button";
 import { InputController } from "@/components/InputController";
 import { KeyboardContainer } from "@/components/KeyboardContainer";
 import { router } from "expo-router";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { useRegisterViewModal } from "./useRegister.viewModel";
 
 export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = ({ onSubmit, control }) => {
@@ -50,7 +51,7 @@ export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = (
                     placeholder="Sua senha"
                 />
 
-                 <InputController
+                <InputController
                     control={control}
                     name="confirmPassword"
                     label="CONFIRMAR SENHA"
@@ -59,13 +60,16 @@ export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = (
                     placeholder="Confirme a senha"
                 />
 
-                <TouchableOpacity onPress={onSubmit}>
-                    <Text>Registrar</Text>
-                </TouchableOpacity>
+                <Button className="mt-6" onPress={onSubmit}>
+                    Registrar
+                </Button>
+                <View className="mt-16">
+                    <Text className="text-base text-gray-300 mb-6">Já tem uma conta?</Text>
+                    <Button variant="outline" onPress={() => router.push("/login")}>
+                        Login
+                    </Button>
+                </View>
 
-                <TouchableOpacity onPress={() => router.push("/login")}>
-                    <Text>Login</Text>
-                </TouchableOpacity>
             </ScrollView>
         </KeyboardContainer>
     )

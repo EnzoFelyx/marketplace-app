@@ -1,49 +1,55 @@
 import { AuthFormHeader } from "@/components/AuthFormHeader"
+import { Button } from "@/components/Button"
 import { InputController } from "@/components/InputController"
 import { KeyboardContainer } from "@/components/KeyboardContainer"
 import { router } from "expo-router"
 import { FC } from "react"
-import { Text, TouchableOpacity, View } from "react-native"
+import { Text, View } from "react-native"
 import { useLoginViewModel } from "./useLogin.viewModel"
-import { Button } from "@/components/Button"
 
 export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({ control, onSubmit }) => {
     return (
         <KeyboardContainer>
             <View className="flex-1 justify-center items-center px-[40px]">
 
-                <AuthFormHeader
-                    title="Acesse sua conta"
-                    subtitle="Informe seu e-mail e senha para entrar"
-                />
+                <View className="flex-1 w-full items-center justify-center">
 
-                <InputController
-                    control={control}
-                    name="email"
-                    label="E-MAIL"
-                    leftIcon="mail-outline"
-                    autoCapitalize="none"
-                    keyboardType="email-address"
-                    placeholder="mail@exemplo.br"
-                />
+                    <AuthFormHeader
+                        title="Acesse sua conta"
+                        subtitle="Informe seu e-mail e senha para entrar"
+                    />
 
-                <InputController
-                    control={control}
-                    name="password"
-                    label="SENHA"
-                    leftIcon="lock-closed-outline"
-                    secureTextEntry
-                    placeholder="Sua senha"
-                />
+                    <InputController
+                        control={control}
+                        name="email"
+                        label="E-MAIL"
+                        leftIcon="mail-outline"
+                        autoCapitalize="none"
+                        keyboardType="email-address"
+                        placeholder="mail@exemplo.br"
+                    />
 
-                <Button onPress={onSubmit}>
-                    Entrar
-                </Button>
+                    <InputController
+                        control={control}
+                        name="password"
+                        label="SENHA"
+                        leftIcon="lock-closed-outline"
+                        secureTextEntry
+                        placeholder="Sua senha"
+                    />
 
-                <TouchableOpacity onPress={() => router.push("/register")}>
-                    <Text>Registro</Text>
-                </TouchableOpacity>
+                    <Button className="mt-6" onPress={onSubmit} rightIcon="arrow-forward">
+                        Login
+                    </Button>
 
+                </View>
+
+                <View className="flex-2 pb-16">
+                    <Text className="text-base mb-6 text-gray-300">Ainda não tem uma conta?</Text>
+                    <Button variant="outline" onPress={() => router.push("/register")} rightIcon="arrow-forward">
+                        Registro
+                    </Button>
+                </View>
             </View>
         </KeyboardContainer>
     )

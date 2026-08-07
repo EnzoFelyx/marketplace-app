@@ -16,6 +16,7 @@ export const Button: FC<Props> = ({
     children,
     isDisabled,
     isLoading,
+    className,
     hasIcon,
     variant= "filled",
     ...rest }) => {
@@ -47,7 +48,7 @@ export const Button: FC<Props> = ({
     }
 
     return (
-        <TouchableOpacity className={styles.base()} {...rest}>
+        <TouchableOpacity className={styles.base({className})} {...rest}>
             {renderContent()}
         </TouchableOpacity>
     )

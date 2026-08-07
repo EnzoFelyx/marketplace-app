@@ -7,8 +7,10 @@ export interface SelectionOptions {
     text: string
     onPress: () => void
     icon?: keyof typeof Ionicons.glyphMap
-    variant?: "primary" | "secondary" | "danger"
+    variant?: SelectionVariant
 }
+
+export type SelectionVariant =  "primary" | "secondary" | "danger"
 
 export const useModal = () => {
 

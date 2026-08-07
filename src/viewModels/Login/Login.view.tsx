@@ -5,6 +5,7 @@ import { router } from "expo-router"
 import { FC } from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 import { useLoginViewModel } from "./useLogin.viewModel"
+import { Button } from "@/components/Button"
 
 export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({ control, onSubmit }) => {
     return (
@@ -35,9 +36,9 @@ export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({ control, o
                     placeholder="Sua senha"
                 />
 
-                <TouchableOpacity onPress={onSubmit}>
-                    <Text>Login</Text>
-                </TouchableOpacity>
+                <Button onPress={onSubmit}>
+                    Entrar
+                </Button>
 
                 <TouchableOpacity onPress={() => router.push("/register")}>
                     <Text>Registro</Text>

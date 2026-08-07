@@ -11,6 +11,7 @@ export const colors = {
   danger: '#DC3545',
   success: '#28A745',
   warning: '#FFC107',
+  black: '#000000',
   gray: {
     100: '#ADADAD',
     200: '#949494',

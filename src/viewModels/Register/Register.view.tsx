@@ -3,10 +3,11 @@ import { Button } from "@/components/Button";
 import { InputController } from "@/components/InputController";
 import { KeyboardContainer } from "@/components/KeyboardContainer";
 import { router } from "expo-router";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useRegisterViewModal } from "./useRegister.viewModel";
+import { Ionicons } from "@expo/vector-icons";
 
-export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = ({ onSubmit, control }) => {
+export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = ({ onSubmit, control, HandleSelect }) => {
 
     return (
         <KeyboardContainer>
@@ -15,6 +16,10 @@ export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = (
                     title="Crie sua conta"
                     subtitle="Informe seus dados pessoais e de acesso"
                 />
+
+                <TouchableOpacity onPress={HandleSelect}>
+                    <Ionicons name="cloud-upload-outline" size={32}/>
+                </TouchableOpacity>
 
                 <InputController
                     control={control}

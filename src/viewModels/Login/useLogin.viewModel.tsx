@@ -1,7 +1,8 @@
+import { useLoginMutation } from "@/shared/queries/auth/use-login.mutation"
+import { useUserStore } from "@/shared/store/user-store"
+import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
 import { LoginFormData, loginScheme } from "./login.scheme"
-import { yupResolver } from "@hookform/resolvers/yup"
-import { useLoginMutation } from "@/shared/queries/auth/use-login.mutation"
 
 export const useLoginViewModel = () => {
 

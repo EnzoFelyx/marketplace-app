@@ -21,6 +21,8 @@ export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({ control, o
                     name="email"
                     label="E-MAIL"
                     leftIcon="mail-outline"
+                    autoCapitalize="none"
+                    keyboardType="email-address"
                     placeholder="mail@exemplo.br"
                 />
 

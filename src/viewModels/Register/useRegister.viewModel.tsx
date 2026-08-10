@@ -4,12 +4,15 @@ import { useRegisterMutation } from "../../shared/queries/auth/use-register.muta
 import { useUserStore } from "../../shared/store/user-store"
 import { RegisterFormData, registerScheme } from "./register.scheme"
 import { useModal } from "@/shared/hooks/useModal"
+import { useCamera } from "@/shared/hooks/useCamera"
 
 export const useRegisterViewModal = () => {
 
     const userRegisterMutation = useRegisterMutation()
 
     const { setSession, user } = useUserStore()
+
+    const { openCamera } = useCamera({})
 
     const modals = useModal()
 
@@ -22,13 +25,13 @@ export const useRegisterViewModal = () => {
                     text: "Galeria",
                     icon: "images",
                     variant: "primary",
-                    onPress: ()=> alert("galeria!")
+                    onPress: () => alert("galeria!")
                 },
                 {
                     text: "Câmera",
                     icon: "camera",
                     variant: "primary",
-                    onPress: ()=> alert("camera!")
+                    onPress: openCamera,
                 }
             ]
         })
@@ -57,7 +60,7 @@ export const useRegisterViewModal = () => {
         },
     )
 
-    console.log('logado:', user) 
+    console.log('logado:', user)
 
     return {
         control,

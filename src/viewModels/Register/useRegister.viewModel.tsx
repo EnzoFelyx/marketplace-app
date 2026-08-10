@@ -5,6 +5,7 @@ import { useUserStore } from "../../shared/store/user-store"
 import { RegisterFormData, registerScheme } from "./register.scheme"
 import { useModal } from "@/shared/hooks/useModal"
 import { useCamera } from "@/shared/hooks/useCamera"
+import { useGallery } from "@/shared/hooks/useGallery"
 
 export const useRegisterViewModal = () => {
 
@@ -13,6 +14,7 @@ export const useRegisterViewModal = () => {
     const { setSession, user } = useUserStore()
 
     const { openCamera } = useCamera({})
+    const { openGallery } = useGallery({})
 
     const modals = useModal()
 
@@ -25,7 +27,7 @@ export const useRegisterViewModal = () => {
                     text: "Galeria",
                     icon: "images",
                     variant: "primary",
-                    onPress: () => alert("galeria!")
+                    onPress: openGallery
                 },
                 {
                     text: "Câmera",

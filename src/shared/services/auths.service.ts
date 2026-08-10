@@ -27,10 +27,15 @@ export const uploadAvatar = async (avatarURI: string) => {
     formData.append("avatar", {
         uri: avatarURI,
         type: "image/jpeg",
-        name: "acatar.jpeg"
+        name: "avatar.jpeg"
     } as unknown as Blob)
 
-    const { data } = await marketPlaceApi.post<UploadAvatarResponse>("/user/avatar")
+   const { data } = await marketPlaceApi.post<UploadAvatarResponse>(
+    "/user/avatar",
+    formData,
+    { headers: { "Content-Type": "multipart/form-data" } }
+)
+
     
     data.url = `${baseURL}${data.url}`
 

@@ -1,17 +1,16 @@
 import { useImage } from "@/shared/hooks/useImage"
+import { useUploadAvatarMutation } from "@/shared/queries/auth/use-upload-avatar.mutation"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { CameraType } from "expo-image-picker"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useRegisterMutation } from "../../shared/queries/auth/use-register.mutation"
 import { useUserStore } from "../../shared/store/user-store"
 import { RegisterFormData, registerScheme } from "./register.scheme"
-import { useState } from "react"
-import { CameraType } from "expo-image-picker"
 
 export const useRegisterViewModal = () => {
 
-    const userRegisterMutation = useRegisterMutation()
-
-    const { setSession } = useUserStore()
+    const { setSession, updatedUser } = useUserStore()
 
     const [avatarURI, setAvatarURI] = useState<string | null>(null)
 
@@ -35,15 +34,23 @@ export const useRegisterViewModal = () => {
         }
     })
 
+    const uploadAvatarMutation = useUploadAvatarMutation()
+
+    const userRegisterMutation = useRegisterMutation({
+        onSucess: async () => {
+            if (avatarURI) {
+                const { url } = await uploadAvatarMutation.mutateAsync(avatarURI)
+                console.log({url})
+                updatedUser({ avatarUrl: url })
+            }
+        }
+    })
+
     const onSubmit = handleSubmit(
         async (useData) => {
             const { confirmPassword, ...registerData } = useData
-            const mutationResponse = await userRegisterMutation.mutateAsync(registerData)
-            setSession({
-                refreshToken: mutationResponse.refreshToken,
-                token: mutationResponse.token,
-                user: mutationResponse.user
-            })
+            await userRegisterMutation.mutateAsync(registerData)
+
         },
     )
 

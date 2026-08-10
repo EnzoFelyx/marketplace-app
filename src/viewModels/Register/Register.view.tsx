@@ -3,11 +3,16 @@ import { Button } from "@/components/Button";
 import { InputController } from "@/components/InputController";
 import { KeyboardContainer } from "@/components/KeyboardContainer";
 import { router } from "expo-router";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useRegisterViewModal } from "./useRegister.viewModel";
 import { Ionicons } from "@expo/vector-icons";
 
-export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = ({ onSubmit, control, HandleSelect }) => {
+export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = ({
+    onSubmit,
+    control,
+    handleSelectAvatar,
+    avatarURI
+}) => {
 
     return (
         <KeyboardContainer>
@@ -17,8 +22,16 @@ export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = (
                     subtitle="Informe seus dados pessoais e de acesso"
                 />
 
-                <TouchableOpacity onPress={HandleSelect}>
-                    <Ionicons name="cloud-upload-outline" size={32}/>
+                <TouchableOpacity
+                    className="w-[120px] h-[120px] rounded-[12px] justify-center items-center bg-shape self-center mb-8"
+                    onPress={handleSelectAvatar}
+                >
+                    {avatarURI ? (
+                        <Image source={{ uri: avatarURI }} className="w-full h-full rounded-[12px]" resizeMode="cover" />
+                    ) : (
+                        <Ionicons name="cloud-upload-outline" size={32} />
+                    )
+                    }
                 </TouchableOpacity>
 
                 <InputController

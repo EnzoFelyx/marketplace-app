@@ -1,42 +1,27 @@
+import { useImage } from "@/shared/hooks/useImage"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
 import { useRegisterMutation } from "../../shared/queries/auth/use-register.mutation"
 import { useUserStore } from "../../shared/store/user-store"
 import { RegisterFormData, registerScheme } from "./register.scheme"
-import { useModal } from "@/shared/hooks/useModal"
-import { useCamera } from "@/shared/hooks/useCamera"
-import { useGallery } from "@/shared/hooks/useGallery"
+import { useState } from "react"
+import { CameraType } from "expo-image-picker"
 
 export const useRegisterViewModal = () => {
 
     const userRegisterMutation = useRegisterMutation()
 
-    const { setSession, user } = useUserStore()
+    const { setSession } = useUserStore()
 
-    const { openCamera } = useCamera({})
-    const { openGallery } = useGallery({})
+    const [avatarURI, setAvatarURI] = useState<string | null>(null)
 
-    const modals = useModal()
+    const { handleSelectImage } = useImage({
+        callBack: setAvatarURI,
+        cameraType: CameraType.front
+    })
 
-    const HandleSelect = () => {
-        modals.showSelection({
-            title: "Selecionar foto",
-            message: "Escolha uma opção",
-            options: [
-                {
-                    text: "Galeria",
-                    icon: "images",
-                    variant: "primary",
-                    onPress: openGallery
-                },
-                {
-                    text: "Câmera",
-                    icon: "camera",
-                    variant: "primary",
-                    onPress: openCamera,
-                }
-            ]
-        })
+    const handleSelectAvatar = async () => {
+        await handleSelectImage()
     }
 
     const { control, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
@@ -62,12 +47,11 @@ export const useRegisterViewModal = () => {
         },
     )
 
-    console.log('logado:', user)
-
     return {
         control,
         onSubmit,
         errors,
-        HandleSelect
+        handleSelectAvatar,
+        avatarURI
     }
 }

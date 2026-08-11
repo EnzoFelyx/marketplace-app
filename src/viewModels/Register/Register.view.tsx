@@ -83,7 +83,7 @@ export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = (
                 </Button>
                 <View className="mt-16">
                     <Text className="text-base text-gray-300 mb-6">Já tem uma conta?</Text>
-                    <Button variant="outline" onPress={() => router.push("/login")}>
+                    <Button variant="outline" onPress={() => router.push("/(public)/login")}>
                         Login
                     </Button>
                 </View>

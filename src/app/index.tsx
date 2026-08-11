@@ -1,19 +1,17 @@
+import { useUserStore } from "@/shared/store/user-store";
 import { Redirect } from "expo-router";
 
 export default function App() {
 
-    const userData = {
-        token: "asdjaisdj21ij312",
-        name: "Enzofelyx"
-    }
+    const { user, token } = useUserStore()
 
-    if (!userData) {
+    if (user && token) {
         return (
             <Redirect href="/(private)/home" />
         )
     }
     else
         return (
-            <Redirect href="/login" />
+            <Redirect href="/(public)/login" />
         )
 }

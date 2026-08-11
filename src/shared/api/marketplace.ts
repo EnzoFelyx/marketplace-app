@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios, { AxiosInstance } from "axios";
+import { useUserStore } from "../store/user-store";
 
 const getBaseUrl = () => {
     // API roda em outro PC na mesma rede, então usamos o IP de LAN
@@ -48,6 +49,8 @@ export class MarketPlaceApiClient {
 
         this.instance.interceptors.response.use((response) => response,
             async (error) => {
+                
+                alert("Sessão expirada!")
 
                 const originalRequest = error.config
 
@@ -83,6 +86,7 @@ export class MarketPlaceApiClient {
                         return this.instance(originalRequest)
 
                     } catch (error) {
+                        this.handleUnauthorized()
                         return Promise.reject(new Error("Sessão encerrada, faça o login novamente"))
                     } finally {
                         this.isRefresing = false
@@ -96,6 +100,15 @@ export class MarketPlaceApiClient {
                 }
             }
         )
+    }
+
+    private async handleUnauthorized() {
+
+        const { logout } = useUserStore.getState()
+
+        delete this.instance.defaults.headers.common["Authorization"]
+        logout()
+
     }
 }
 

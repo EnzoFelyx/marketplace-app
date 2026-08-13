@@ -1,4 +1,4 @@
-import { baseURL, marketPlaceApi } from "../api/marketplace";
+import { marketPlaceApi } from "../api/marketplace";
 import { AuthResponse } from "../interface/http/auth-response";
 import { LoginHTTPParams } from "../interface/http/login";
 import { RegisterHTTPParams } from "../interface/http/register";
@@ -36,8 +36,7 @@ export const uploadAvatar = async (avatarURI: string) => {
     { headers: { "Content-Type": "multipart/form-data" } }
 )
 
-    
-    data.url = `${baseURL}${data.url}`
-
+    // guardamos o caminho relativo como a API entrega; quem renderiza
+    // resolve a URL com resolveFileUrl
     return data
 }

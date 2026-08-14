@@ -6,7 +6,7 @@ interface Props {
 
 export const useProductCardViewModel = ({ product }: Props) => {
 
-    
+
     return {
         product
     }

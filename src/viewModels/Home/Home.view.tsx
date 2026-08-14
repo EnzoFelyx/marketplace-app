@@ -5,34 +5,12 @@ import { useUserStore } from "@/shared/store/user-store"
 import { SearchInput } from "./components/SearchInput"
 import { ProductInterface } from "@/shared/interface/product"
 import { ProductCard } from "./components/ProductCard"
+import { FC } from "react"
+import { useHomeViewModel } from "./useHome.viewModel"
 
-export const HomeView = () => {
+export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({products}) => {
 
     const { logout } = useUserStore()
-
-    const productsList: ProductInterface[] = [
-        {
-            id: 0,
-            value: "string",
-            name: "string",
-            description: "string",
-            photo: "string",
-            height: "string",
-            width: "string",
-            weight: "string",
-            averageRating: 0,
-            views: 0,
-            ratingCount: 0,
-            categoryId: 0,
-            category: {
-                id: 0,
-                name: "string"
-            },
-            createdAt: "string",
-            updatedAt: "string",
-            deletedAt: "string"
-        }
-    ]
 
     return (
         <SafeAreaView className="flex-1" edges={["top"]}>
@@ -41,7 +19,11 @@ export const HomeView = () => {
             </TouchableOpacity>
             <FlatList
                 contentContainerClassName="px-[16px] pb-[120px]"
-                data={productsList}
+                data={products}
+                numColumns={2}
+                columnWrapperStyle={{
+                    justifyContent: "space-between"
+                }}
                 renderItem={({ item }) => <ProductCard product={item} />}
                 keyExtractor={({ id }) => `product-list-item-${id}`}
                 ListHeaderComponent={() => (

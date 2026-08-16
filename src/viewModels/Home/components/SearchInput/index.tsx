@@ -4,6 +4,7 @@ import { colors } from "@/styles/colors"
 import { Ionicons } from "@expo/vector-icons"
 
 import { Text, TouchableOpacity, View } from "react-native"
+import { Filter } from "../Filter"
 
 export const SearchInput = () => {
 
@@ -25,7 +26,7 @@ export const SearchInput = () => {
 
                 <TouchableOpacity
                     onPress={() => open({
-                        content: <Text>teste</Text>
+                        content: <Filter />
                     })}
                     className="ml-5 mt-6 items-center justify-center rounded-xl border-[1px] h-[48px] w-[48px] border-purple-base"
                 >

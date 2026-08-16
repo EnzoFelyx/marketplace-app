@@ -21,7 +21,8 @@ export const useProductInfiniteQuery = () => {
             return lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined
         }, //controle de paginação
         initialPageParam: 1, //pagina inicial
-        queryKey: ["prodcuts"]
+        queryKey: ["prodcuts"],
+        staleTime: 1000,
     })
 
     const products = data?.pages.flatMap((page) => page.data)
@@ -34,7 +35,7 @@ export const useProductInfiniteQuery = () => {
         isFetchingNextPage,
         isLoading,
         refetch,
-        isRefetching
+        isRefetching,
     }
 
 }

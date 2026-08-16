@@ -1,19 +1,22 @@
 import { useUserStore } from "@/shared/store/user-store"
 import { FC } from "react"
-import { FlatList, Text, TouchableOpacity } from "react-native"
+import { FlatList, RefreshControl, Text, TouchableOpacity } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Footer } from "./components/Footer"
 import { HomeHeader } from "./components/Header"
 import { ProductCard } from "./components/ProductCard"
 import { SearchInput } from "./components/SearchInput"
 import { useHomeViewModel } from "./useHome.viewModel"
+import { colors } from "@/styles/colors"
 
 export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
     products,
     handleEndReached,
     isLoading,
     hasNextPage,
-    isFetchingNextPage
+    isFetchingNextPage,
+    handleRefresh,
+    isRefetching,
 }) => {
 
     const { logout } = useUserStore()
@@ -36,6 +39,12 @@ export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
                 renderItem={({ item }) => <ProductCard product={item} />}
                 ListFooterComponent={<Footer isLoading={hasNextPage && Boolean(isLoading || isFetchingNextPage)} />}
                 keyExtractor={({ id }) => `product-list-item-${id}`}
+                refreshControl={<RefreshControl
+                    refreshing={isRefetching}
+                    colors={[colors["purple-base"],]}
+                    tintColor={colors["purple-base"]}
+                    onRefresh={handleRefresh}
+                />}
                 ListHeaderComponent={() => (
                     <>
                         <HomeHeader />

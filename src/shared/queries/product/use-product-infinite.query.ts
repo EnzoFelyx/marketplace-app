@@ -22,7 +22,7 @@ export const useProductInfiniteQuery = () => {
         }, //controle de paginação
         initialPageParam: 1, //pagina inicial
         queryKey: ["prodcuts"],
-        staleTime: 1000,
+        staleTime: 1000 * 60 * 1,
     })
 
     const products = data?.pages.flatMap((page) => page.data)

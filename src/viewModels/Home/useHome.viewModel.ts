@@ -34,7 +34,8 @@ export const useHomeViewModel = () => {
         handleEndReached,
         isLoading,
         hasNextPage,
-        isFetchingNextPage
+        isFetchingNextPage,
+        isRefetching,
     }
 
 }

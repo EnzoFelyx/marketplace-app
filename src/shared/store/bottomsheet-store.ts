@@ -11,7 +11,7 @@ interface Props {
     content: ReactNode | null
     config: ConfigProps
 
-    open: (content: { content: ReactNode, config: ConfigProps }) => void
+    open: (content: { content: ReactNode, config?: ConfigProps }) => void
     close: () => void
 }
 

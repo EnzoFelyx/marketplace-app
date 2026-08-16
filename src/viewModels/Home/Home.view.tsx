@@ -1,4 +1,5 @@
 import { useUserStore } from "@/shared/store/user-store"
+import { colors } from "@/styles/colors"
 import { FC } from "react"
 import { FlatList, RefreshControl, Text, TouchableOpacity } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
@@ -7,7 +8,6 @@ import { HomeHeader } from "./components/Header"
 import { ProductCard } from "./components/ProductCard"
 import { SearchInput } from "./components/SearchInput"
 import { useHomeViewModel } from "./useHome.viewModel"
-import { colors } from "@/styles/colors"
 
 export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
     products,
@@ -20,8 +20,6 @@ export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
 }) => {
 
     const { logout } = useUserStore()
-
-    console.log(hasNextPage, isLoading, isFetchingNextPage)
 
     return (
         <SafeAreaView className="flex-1" edges={["top"]}>

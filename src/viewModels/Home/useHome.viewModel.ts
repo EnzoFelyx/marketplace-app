@@ -1,9 +1,5 @@
 import { useProductInfiniteQuery } from "@/shared/queries/product/use-product-infinite.query"
 
-interface Props {
-
-}
-
 export const useHomeViewModel = () => {
 
     const {
@@ -27,10 +23,15 @@ export const useHomeViewModel = () => {
         await refetch()
     }
 
+    const handleEndReached = () => {
+        handleLoadMore()
+    }
+
     return {
         handleLoadMore,
         handleRefresh,
-        products
+        products,
+        handleEndReached
     }
 
 }

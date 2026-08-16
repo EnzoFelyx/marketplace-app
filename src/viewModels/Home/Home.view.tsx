@@ -8,7 +8,7 @@ import { ProductCard } from "./components/ProductCard"
 import { FC } from "react"
 import { useHomeViewModel } from "./useHome.viewModel"
 
-export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({products}) => {
+export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({products, handleEndReached}) => {
 
     const { logout } = useUserStore()
 
@@ -21,6 +21,7 @@ export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({products}) =>
                 contentContainerClassName="px-[16px] pb-[120px]"
                 data={products}
                 numColumns={2}
+                onEndReached={handleEndReached}
                 columnWrapperStyle={{
                     justifyContent: "space-between"
                 }}

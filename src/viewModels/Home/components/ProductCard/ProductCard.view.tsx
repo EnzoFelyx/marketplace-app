@@ -12,7 +12,7 @@ export const ProductCardView: FC<ReturnType<typeof useProductCardViewModel>> = (
 
     return (
         <TouchableOpacity
-            className="w-[48%] my-11 rounded-xl shadow-sm overflow-hidden h-[157px] p-[4px] bg-white mb-2"
+            className="w-[48%] my-11 rounded-xl shadow-sm overflow-hidden p-[4px] bg-white mb-2"
         >
             <View>
                 {productPhoto ? (
@@ -30,11 +30,11 @@ export const ProductCardView: FC<ReturnType<typeof useProductCardViewModel>> = (
                     <Text className="text-sm font-semibold ml-1">{product.ratingCount}</Text>
                 </View>
             </View>
-            <View className="p-3">
+            <View className="flex-1 px-2 pt-2 pb-1">
                 <Text className="text-xs font-semibold mb-1" numberOfLines={2}>{product.name}</Text>
-            </View>
-            <View className="flex-row items-center justify-between">
-                <Text>R${product.value}</Text>
+                <View className="flex-row items-center justify-between mt-auto">
+                    <Text>R${product.value}</Text>
+                </View>
             </View>
         </TouchableOpacity>
     )

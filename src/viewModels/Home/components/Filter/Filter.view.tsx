@@ -1,14 +1,13 @@
+import { Button } from "@/components/Button"
 import { Input } from "@/components/Input"
 import { colors } from "@/styles/colors"
 import { Ionicons } from "@expo/vector-icons"
 import { FC } from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 import { useFilterViewModel } from "./useFilter.viewModel"
-import { Button } from "@/components/Button"
+import Checkbox from "expo-checkbox"
 
 export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({ productsCategory, isLoading }) => {
-
-    console.log(productsCategory)
 
     return (
         <View>
@@ -42,6 +41,24 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({ products
                 </View>
 
                 <Text className="font-semibold text-base text-gray-300">CATEGORIA</Text>
+
+                {isLoading ? (
+                    <Text>Carregando categorias...</Text>
+                ) : (
+                    <View className="mb-6 gap-3">
+                        {
+                            productsCategory?.map(({ name, id }) => (
+                                <TouchableOpacity
+                                    className="flex-row items-center py-2"
+                                    key={`product-category-${id}`}
+                                >
+                                    <Checkbox color={colors["purple-base"]} className="mr-3 rounded-full"/>
+                                    <Text className="text-base text-gray-400">{name}</Text>
+                                </TouchableOpacity>
+                            ))
+                        }
+                    </View>
+                )}
 
                 <View className="flex-row gap-3 mt-4 mb-6">
 

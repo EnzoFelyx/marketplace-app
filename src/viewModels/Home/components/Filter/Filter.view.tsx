@@ -6,7 +6,10 @@ import { Text, TouchableOpacity, View } from "react-native"
 import { useFilterViewModel } from "./useFilter.viewModel"
 import { Button } from "@/components/Button"
 
-export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({ }) => {
+export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({ productsCategory, isLoading }) => {
+
+    console.log(productsCategory)
+
     return (
         <View>
             <View className="flex-row items-center justify-between p-4 px-6">
@@ -48,7 +51,7 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({ }) => {
                         </Button>
                     </View>
 
-                      <View className="flex-1">
+                    <View className="flex-1">
                         <Button >
                             Buscar
                         </Button>

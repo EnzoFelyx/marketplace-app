@@ -15,6 +15,7 @@ interface FilterProps {
         value: string | number | number[]
     }) => void
     resetFilter: () => void
+    applieFilter: () => void
 }
 
 const defaultFilterValues = {
@@ -35,5 +36,8 @@ export const useFilterStore = create<FilterProps>((set) => ({
     resetFilter: () => set({
         appliedFilterState: defaultFilterValues,
         FilterState: defaultFilterValues
-    })
+    }),
+    applieFilter: () => set((state) => ({
+        appliedFilterState: state.FilterState
+    }))
 }))

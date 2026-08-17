@@ -1,6 +1,6 @@
 import { useUserStore } from "@/shared/store/user-store"
 import { colors } from "@/styles/colors"
-import { FC } from "react"
+import { FC, memo } from "react"
 import { FlatList, RefreshControl, Text, TouchableOpacity } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Footer } from "./components/Footer"
@@ -8,6 +8,23 @@ import { HomeHeader } from "./components/Header"
 import { ProductCard } from "./components/ProductCard"
 import { SearchInput } from "./components/SearchInput"
 import { useHomeViewModel } from "./useHome.viewModel"
+
+const RenderHeader = memo(({
+    searchInputText,
+    setSearchInputText
+}: {
+    searchInputText: string,
+    setSearchInputText: (text: string) => void
+}
+) => (
+    <>
+        <HomeHeader />
+        <SearchInput
+            setSearchInputText={setSearchInputText}
+            inputValue={searchInputText}
+        />
+    </>
+))
 
 export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
     products,
@@ -17,6 +34,8 @@ export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
     isFetchingNextPage,
     handleRefresh,
     isRefetching,
+    setSearchInputText,
+    searchInputText
 }) => {
 
     const { logout } = useUserStore()
@@ -43,12 +62,7 @@ export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
                     tintColor={colors["purple-base"]}
                     onRefresh={handleRefresh}
                 />}
-                ListHeaderComponent={() => (
-                    <>
-                        <HomeHeader />
-                        <SearchInput />
-                    </>
-                )}
+                ListHeaderComponent={<RenderHeader searchInputText={searchInputText} setSearchInputText={setSearchInputText} />}
             />
         </SafeAreaView>
     )

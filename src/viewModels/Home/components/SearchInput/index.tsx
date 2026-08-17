@@ -5,8 +5,14 @@ import { Ionicons } from "@expo/vector-icons"
 
 import { Text, TouchableOpacity, View } from "react-native"
 import { Filter } from "../Filter"
+import { FC } from "react"
 
-export const SearchInput = () => {
+interface Props {
+    setSearchInputText: (text: string) => void
+    inputValue: string
+}
+
+export const SearchInput: FC<Props> = ({setSearchInputText, inputValue}) => {
 
     const { open } = useBottomSheetStore()
 
@@ -22,6 +28,8 @@ export const SearchInput = () => {
                         leftIcon="search"
                         className="text-lg flex-1"
                         returnKeyType="search"
+                        onChangeText={setSearchInputText}
+                        value={inputValue}
                     />
                 </View>
 

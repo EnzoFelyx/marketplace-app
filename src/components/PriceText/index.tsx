@@ -1,5 +1,5 @@
 import { PriceTextView } from "./PriceTextView"
-import { usePriceTextViewModel } from "./usePricetextViewModel"
+import { usePriceTextViewModel } from "./usePriceTextViewModel"
 
 interface Props {
     classNameCurrency?: string

@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons"
 import { FC } from "react"
 import { Image, Text, TouchableOpacity, View } from "react-native"
 import { useProductCardViewModel } from "./useProductCard.viewModel"
+import { PriceText } from "@/components/PriceText"
 
 
 export const ProductCardView: FC<ReturnType<typeof useProductCardViewModel>> = ({ product, displayName, formatRating }) => {
@@ -33,7 +34,11 @@ export const ProductCardView: FC<ReturnType<typeof useProductCardViewModel>> = (
             <View className="px-2 pt-2 pb-1">
                 <Text className="text-xs font-semibold mb-1" numberOfLines={2}>{displayName}</Text>
                 <View className="flex-row items-center justify-between">
-                    <Text>R${product.value}</Text>
+                    <PriceText 
+                    classNameCurrency="text-small"
+                    classNameValue="text-lg font-bold flex-1"
+                    value={Number(product.value)}
+                    />
                 </View>
             </View>
         </TouchableOpacity>

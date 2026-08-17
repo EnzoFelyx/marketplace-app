@@ -1,30 +1,12 @@
 import { useUserStore } from "@/shared/store/user-store"
 import { colors } from "@/styles/colors"
-import { FC, memo } from "react"
+import { FC } from "react"
 import { FlatList, RefreshControl, Text, TouchableOpacity } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Footer } from "./components/Footer"
-import { HomeHeader } from "./components/Header"
 import { ProductCard } from "./components/ProductCard"
-import { SearchInput } from "./components/SearchInput"
+import { RenderHeader } from "./components/RenderHeader"
 import { useHomeViewModel } from "./useHome.viewModel"
-
-const RenderHeader = memo(({
-    searchInputText,
-    setSearchInputText
-}: {
-    searchInputText: string,
-    setSearchInputText: (text: string) => void
-}
-) => (
-    <>
-        <HomeHeader />
-        <SearchInput
-            setSearchInputText={setSearchInputText}
-            inputValue={searchInputText}
-        />
-    </>
-))
 
 export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
     products,

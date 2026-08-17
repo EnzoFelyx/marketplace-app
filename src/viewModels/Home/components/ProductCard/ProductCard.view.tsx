@@ -1,12 +1,12 @@
+import { resolveFileUrl } from "@/shared/utils/resolve-file-url"
+import { colors } from "@/styles/colors"
+import { Ionicons } from "@expo/vector-icons"
 import { FC } from "react"
 import { Image, Text, TouchableOpacity, View } from "react-native"
 import { useProductCardViewModel } from "./useProductCard.viewModel"
-import { Ionicons } from "@expo/vector-icons"
-import { colors } from "@/styles/colors"
-import { resolveFileUrl } from "@/shared/utils/resolve-file-url"
 
 
-export const ProductCardView: FC<ReturnType<typeof useProductCardViewModel>> = ({ product }) => {
+export const ProductCardView: FC<ReturnType<typeof useProductCardViewModel>> = ({ product, displayName, formatRating }) => {
 
     const productPhoto = resolveFileUrl(product?.photo)
 
@@ -27,12 +27,12 @@ export const ProductCardView: FC<ReturnType<typeof useProductCardViewModel>> = (
                 ) : null}
                 <View className="absolute top-0 right-0 flex-row items-center px-2 py-1 rounded-b-lg rounded-r-none bg-white">
                     <Ionicons name="star" size={12} color={colors["blue-base"]} />
-                    <Text className="text-sm font-semibold ml-1">{product.ratingCount}</Text>
+                    <Text className="text-sm font-semibold ml-1">{formatRating}</Text>
                 </View>
             </View>
-            <View className="flex-1 px-2 pt-2 pb-1">
-                <Text className="text-xs font-semibold mb-1" numberOfLines={2}>{product.name}</Text>
-                <View className="flex-row items-center justify-between mt-auto">
+            <View className="px-2 pt-2 pb-1">
+                <Text className="text-xs font-semibold mb-1" numberOfLines={2}>{displayName}</Text>
+                <View className="flex-row items-center justify-between">
                     <Text>R${product.value}</Text>
                 </View>
             </View>

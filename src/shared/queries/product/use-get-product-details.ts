@@ -8,7 +8,5 @@ export const useGetProductDetailsQuery = (productId: number) => {
         queryKey: ["product-detail", productId]
     })
 
-    return {
-        query
-    }
+    return query
 }

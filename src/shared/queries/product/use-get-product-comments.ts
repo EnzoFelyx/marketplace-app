@@ -1,3 +1,4 @@
+import { ResolvedProductComment } from "@/shared/interface/product-comment"
 import { getProductComments } from "@/shared/services/product.service"
 import { resolveFileUrl } from "@/shared/utils/resolve-file-url"
 import { useInfiniteQuery } from "@tanstack/react-query"
@@ -21,7 +22,7 @@ export const useGetCommentsInfiniteQuery = (productId: number) => {
         initialPageParam: 1
     })
 
-    const comment = query.data?.pages.flatMap((page) => page.data).map((comment) => ({
+    const comment: ResolvedProductComment[] = query.data?.pages.flatMap((page) => page.data).map((comment) => ({
         ...comment,
         user: {
             ...comment.user,
@@ -31,5 +32,5 @@ export const useGetCommentsInfiniteQuery = (productId: number) => {
         }
     })) ?? []
 
-    return {...query, comment}
+    return { ...query, comment }
 }

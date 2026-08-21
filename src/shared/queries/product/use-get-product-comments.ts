@@ -26,7 +26,7 @@ export const useGetCommentsInfiniteQuery = (productId: number) => {
         user: {
             ...comment.user,
             avatar: {
-                url: resolveFileUrl(comment.user.avatar.url)
+                url: resolveFileUrl(comment.user.avatar?.url ?? "")
             }
         }
     })) ?? []

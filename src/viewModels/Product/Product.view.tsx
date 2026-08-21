@@ -7,7 +7,13 @@ import { Header } from "./components/Header"
 export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
     error,
     isLoading,
-    productDetails
+    productDetails,
+    getCommentsErro,
+    getCommentsLoading,
+    comment,
+    handleEndReached,
+    handleLoadingMore,
+    handleRefetch
 }) => {
 
     if (error) {
@@ -18,10 +24,12 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
         return null
     }
 
+    console.log(comment)
+
     return (
         <SafeAreaView className="flex-1 bg-background">
             <FlatList
-                data={[]}
+                data={comment}
                 renderItem={() => <></>}
                 ListHeaderComponent={<Header productDetails={productDetails} />}
                 className="px-6"

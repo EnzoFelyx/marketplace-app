@@ -1,11 +1,13 @@
 import { marketPlaceApi } from "../api/marketplace"
+import { PaginatedResponse } from "../interface/http/paginated-response"
+import { GetProductCommentsRequest } from "../interface/http/product-comment-request"
 import { GetProductDetailsInterface } from "../interface/http/product-details"
 import { ProductRequest } from "../interface/http/product-request"
-import { ProductResponse } from "../interface/http/product-response"
-import { ProductCategory } from "../interface/product"
+import { ProductCategory, ProductInterface } from "../interface/product"
+import { ProductComment } from "../interface/product-comment"
 
 export const getProducts = async (params: ProductRequest) => {
-    const { data } = await marketPlaceApi.post<ProductResponse>("/products", params)
+    const { data } = await marketPlaceApi.post<PaginatedResponse<ProductInterface>>("/products", params)
     return data
 }
 
@@ -17,4 +19,9 @@ export const getProductsCategories = async () => {
 export const getProductDetails = async (id: number) => {
     const { data } = await marketPlaceApi.get<GetProductDetailsInterface>(`/products/${id}`)
     return data
-} 
+}
+
+export const getProductComments = async (params: GetProductCommentsRequest) => {
+    const { data } = await marketPlaceApi.post<PaginatedResponse<ProductComment>>(`/products/comments`, params)
+    return data
+}

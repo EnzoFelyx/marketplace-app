@@ -91,7 +91,7 @@ export const Header: FC<Props> = ({ productDetails }) => {
                     <Text className="text-base text-gray-500">{productDetails.category.name}</Text>
                 </View>
 
-                <View className="flex-row justify-between items-center py-4 border-t border-gray-200">
+                <View className="flex-row justify-between items-center py-6 border-t border-gray-200">
                     <Text className="text-lg font-bold text-black">Avaliações</Text>
 
                     <TouchableOpacity>

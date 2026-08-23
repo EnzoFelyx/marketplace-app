@@ -22,7 +22,7 @@ export const useProductViewModel = (productId: number) => {
 
     const handleLoadingMore = () => {
         if (hasNextPage && !isFetchingNextPage) {
-            fetchNextPage
+            fetchNextPage()
         }
     }
 
@@ -46,5 +46,7 @@ export const useProductViewModel = (productId: number) => {
         getCommentsErro,
         getCommentsLoading,
         comment,
+        isRefetching,
+        isFetchingNextPage,
     }
 }

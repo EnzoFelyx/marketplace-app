@@ -19,7 +19,7 @@ export const useGetCommentsInfiniteQuery = (productId: number) => {
                 return lastPage.page + 1
             } return undefined
         },
-        initialPageParam: 1
+        initialPageParam: 1,
     })
 
     const comment: ResolvedProductComment[] = query.data?.pages.flatMap((page) => page.data).map((comment) => ({

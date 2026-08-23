@@ -37,7 +37,7 @@ export const Button: FC<Props> = ({
         return (
             <>
                 {
-                    leftIcon && <Ionicons name={leftIcon} color={contentColor} />
+                    leftIcon && <Ionicons name={leftIcon} color={contentColor} size={20}/>
                 }
                 <Text className={styles.text()}>{children}</Text>
                 {

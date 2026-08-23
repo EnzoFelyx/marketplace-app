@@ -8,6 +8,7 @@ import { Header } from "./components/Header"
 import { ListFooter } from "./components/ListerFooter"
 import { Loading } from "./components/Loading"
 import { useProductViewModel } from "./useProduct.viewModel"
+import { CartFooter } from "./components/CartFooter"
 
 export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
     error,
@@ -28,7 +29,7 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
     if (isLoading || !productDetails) return <Loading />
 
     return (
-        <SafeAreaView className="flex-1 bg-background">
+        <SafeAreaView className="flex-1 bg-background" edges={["top"]}>
             <FlatList
                 data={comment}
                 renderItem={({ item }) => <CommentItem comment={item} />}
@@ -36,10 +37,12 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
                 className="px-6"
                 onRefresh={handleRefetch}
                 refreshing={isRefetching}
+                contentContainerClassName="pb-6"
                 ListFooterComponent={<ListFooter isLoadingMore={isFetchingNextPage} />}
                 ListEmptyComponent={<EmptyList isLoadingComments={getCommentsLoading} />}
                 onEndReached={handleEndReached}
             />
+            <CartFooter product={productDetails} />
         </SafeAreaView>
     )
 }

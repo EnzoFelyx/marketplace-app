@@ -34,13 +34,24 @@ export const createComment = async (params: createCommentRequest) => {
 }
 
 export const getUserComment = async (productId: number) => {
-    const { data } = await marketPlaceApi.get<{ content: string; rating: number }>(`/products/${productId}/user-comment`,)
+    const { data } = await marketPlaceApi.get<{
+        comment: {
+            id: number
+            content: string;
+            createdAt: Date
+            user: {
+                id: number
+                name: string
+            }
+        }
+        rating: number
+    }>(`/products/${productId}/user-comment`,)
     return data
 }
 
 export const updateUserComment = async (params: updateCommentRequest) => {
     const { data } = await marketPlaceApi.put<updateCommentResponse>(`/products/comments/${params.commentId}`, {
-        content: params.commentId,
+        content: params.content,
         rating: params.rating
     })
     return data

@@ -5,9 +5,10 @@ import { TouchableOpacity } from "react-native"
 
 interface Props {
     rating: number
+    handleRatingChange: (rating: number) => void
 }
 
-export const Stars: FC<Props> = ({ rating }) => {
+export const Stars: FC<Props> = ({ rating, handleRatingChange }) => {
     return Array.from({ length: 5 }, (_, index) => {
 
         const starNumber = index + 1
@@ -15,7 +16,10 @@ export const Stars: FC<Props> = ({ rating }) => {
         const isSelected = starNumber <= rating
 
         return (
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => handleRatingChange(starNumber)}
+                key={`star-${index}`}
+            >
                 <Ionicons
                     name={isSelected ? "star" : "star-outline"}
                     color={isSelected ? colors["purple-base"] : colors.gray[200]}

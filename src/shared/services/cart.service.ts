@@ -3,7 +3,8 @@ import { CartProduct, OmittedProductCart } from "../store/cart-store";
 export const cartService = {
     findExistingProduct: (productList: CartProduct[], productId: number) =>
         productList.some(({ id }) =>
-            id === productId),
+            id === productId
+        ),
 
     addProductToCart: (productList: CartProduct[], newProduct: OmittedProductCart) => {
         const existingProduct = cartService.findExistingProduct(productList, newProduct.id)
@@ -32,6 +33,7 @@ export const cartService = {
             return acc + (Number(product.price) * product.quantity)
         }, 0)
     },
+
     removeProductFromList: (productList: CartProduct[], productId: number) => {
         const products = productList.filter(({ id }) => id !== productId)
         const total = cartService.calculateTotal(products)
@@ -39,5 +41,35 @@ export const cartService = {
             products,
             total
         }
-    }
+    },
+
+    updateProductQuantity: ({
+        productId,
+        productList,
+        quantity
+    }: {
+        productList: CartProduct[],
+        productId: number,
+        quantity: number
+    }) => {
+        if (quantity <= 0) {
+            return cartService.removeProductFromList(productList, productId)
+        }
+
+        const products = productList.map((product) => {
+            if (product.id === productId) {
+                return { ...product, quantity }
+            } else {
+                return product
+            }
+        })
+        const total = cartService.calculateTotal(products)
+
+        return {
+            products,
+            total
+        }
+    },
+
+    getItemCount: (productList: CartProduct[]) => productList.reduce((acc, product) => acc + product.quantity, 0)
 }

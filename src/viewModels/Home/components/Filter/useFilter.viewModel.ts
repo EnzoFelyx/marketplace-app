@@ -1,4 +1,4 @@
-import { useGetProductCategoriesQuery } from "@/shared/queries/product/use-get-prodcut-categories"
+import { useGetProductCategoriesQuery } from "@/shared/queries/product/use-get-product-categories"
 import { useBottomSheetStore } from "@/shared/store/bottomsheet-store"
 import { useFilterStore } from "@/shared/store/use-filter-store"
 

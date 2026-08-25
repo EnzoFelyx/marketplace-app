@@ -5,6 +5,8 @@ import { useModalStore } from "@/shared/store/modal-store"
 import { createElement } from "react"
 import { CartSucessModal } from "./components/CartSucessModal"
 import { router } from "expo-router"
+import { useBottomSheetStore } from "@/shared/store/bottomsheet-store"
+import { Review } from "./components/Review"
 
 export const useProductViewModel = (productId: number) => {
 
@@ -41,6 +43,8 @@ export const useProductViewModel = (productId: number) => {
         }
     }
 
+    const { open: openReview, close: closeReview } = useBottomSheetStore()
+
     const handleEndReached = () => {
         handleLoadingMore()
     }
@@ -73,6 +77,16 @@ export const useProductViewModel = (productId: number) => {
         }))
     }
 
+    const handleOpenReview = () => {
+        if (!productDetails) return
+
+        openReview({
+            content: createElement(Review, {
+                productId,
+            }),
+        })
+    }
+
     return {
         productDetails,
         isLoading,
@@ -85,6 +99,7 @@ export const useProductViewModel = (productId: number) => {
         comment,
         isRefetching,
         isFetchingNextPage,
-        handleAddToCart
+        handleAddToCart,
+        handleOpenReview
     }
 }

@@ -1,8 +1,10 @@
 import { marketPlaceApi } from "../api/marketplace"
+import { createCommentRequest, CreateCommentResponse } from "../interface/http/create-comment"
 import { PaginatedResponse } from "../interface/http/paginated-response"
 import { GetProductCommentsRequest } from "../interface/http/product-comment-request"
 import { GetProductDetailsInterface } from "../interface/http/product-details"
 import { ProductRequest } from "../interface/http/product-request"
+import { updateCommentRequest, updateCommentResponse } from "../interface/http/update-comment"
 import { ProductCategory, ProductInterface } from "../interface/product"
 import { ProductComment } from "../interface/product-comment"
 
@@ -23,5 +25,23 @@ export const getProductDetails = async (id: number) => {
 
 export const getProductComments = async (params: GetProductCommentsRequest) => {
     const { data } = await marketPlaceApi.post<PaginatedResponse<ProductComment>>(`/products/comments`, params)
+    return data
+}
+
+export const createComment = async (params: createCommentRequest) => {
+    const { data } = await marketPlaceApi.post<CreateCommentResponse>("/products/create/comments", params)
+    return data
+}
+
+export const getUserComment = async (productId: number) => {
+    const { data } = await marketPlaceApi.get<{ content: string; rating: number }>(`/products/${productId}/user-comment`,)
+    return data
+}
+
+export const updateUserComment = async (params: updateCommentRequest) => {
+    const { data } = await marketPlaceApi.put<updateCommentResponse>(`/products/comments/${params.commentId}`, {
+        content: params.commentId,
+        rating: params.rating
+    })
     return data
 }

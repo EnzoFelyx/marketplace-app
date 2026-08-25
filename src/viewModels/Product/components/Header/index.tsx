@@ -9,9 +9,10 @@ import { Image, Text, TouchableOpacity, View } from "react-native"
 
 interface Props {
     productDetails: GetProductDetailsInterface
+    handleOpenReview: () => void
 }
 
-export const Header: FC<Props> = ({ productDetails }) => {
+export const Header: FC<Props> = ({ productDetails, handleOpenReview }) => {
 
     const photo = resolveFileUrl(productDetails?.photo)
 
@@ -94,7 +95,7 @@ export const Header: FC<Props> = ({ productDetails }) => {
                 <View className="flex-row justify-between items-center py-6 border-t border-gray-200">
                     <Text className="text-lg font-bold text-black">Avaliações</Text>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleOpenReview}>
                         <Text className="text-purple-base text-base font-medium">Avaliar</Text>
                     </TouchableOpacity>
                 </View>

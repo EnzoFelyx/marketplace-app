@@ -33,7 +33,6 @@ export const CartSucessModal: FC<Props> = ({
 
             <View className="gap-3">
                 <Button
-                    leftIcon="cart"
                     onPress={onGoToCart}
                 >
                     Ver Carrinho

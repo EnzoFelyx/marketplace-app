@@ -1,17 +1,20 @@
 import { Button } from "@/components/Button"
 import { PriceText } from "@/components/PriceText"
+import { useCartStore } from "@/shared/store/cart-store"
 import { colors } from "@/styles/colors"
 import { Ionicons } from "@expo/vector-icons"
 import { Text, TouchableOpacity, View } from "react-native"
 
 export const CartFooter = () => {
 
+    const { total } = useCartStore()
+
     return (
         <View className="bg-white p-4 rounded-lg mt-6">
             <View className="flex-row justify-between items-center mb-4">
                 <Text className="text-xs font-semibold text-gray-500">VALOR TOTAL</Text>
                 <PriceText
-                    value={190}
+                    value={total}
                     classNameValue="text-base text-black font-bold"
                     classNameCurrency="text-base text-black font-bold"
                 />

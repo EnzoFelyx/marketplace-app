@@ -19,7 +19,7 @@ export const CartView: FC<ReturnType<typeof useCartViewModel>> = ({ products }) 
                 keyExtractor={({ id }) => `product-cart-id-${id}`}
                 ListEmptyComponent={<EmptyCart />}
                 ListHeaderComponent={<CartHeader />}
-                ListFooterComponent={<CartFooter/>}
+                ListFooterComponent={products.length > 0  ? <CartFooter/> : null}
                 contentContainerClassName="px-6"
             />
         </SafeAreaView>

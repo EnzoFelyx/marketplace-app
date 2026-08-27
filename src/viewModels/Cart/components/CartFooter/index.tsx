@@ -3,9 +3,14 @@ import { PriceText } from "@/components/PriceText"
 import { useCartStore } from "@/shared/store/cart-store"
 import { colors } from "@/styles/colors"
 import { Ionicons } from "@expo/vector-icons"
+import { FC } from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 
-export const CartFooter = () => {
+interface Props {
+    openCartBottomSheet: () => void
+}
+
+export const CartFooter: FC<Props> = ({ openCartBottomSheet }) => {
 
     const { total } = useCartStore()
 
@@ -25,7 +30,10 @@ export const CartFooter = () => {
 
                     <Text className="text-[10px] font-semibold text-gray-500">CARTÕES DE CRÉDITO</Text>
 
-                    <TouchableOpacity className="flex-row items-center">
+                    <TouchableOpacity 
+                    className="flex-row items-center"
+                    onPress={openCartBottomSheet}
+                    >
                         <Ionicons
                             name="card-outline"
                             size={20}

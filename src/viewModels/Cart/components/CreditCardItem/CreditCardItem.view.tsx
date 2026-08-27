@@ -5,7 +5,11 @@ import { FC } from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 import { useCreditCardItemViewModel } from "./useCreditCardItem.viewModel"
 
-export const CreditCardItemView: FC<ReturnType<typeof useCreditCardItemViewModel>> = ({ creditCard }) => {
+export const CreditCardItemView: FC<ReturnType<typeof useCreditCardItemViewModel>> = ({
+    creditCard,
+    formartedExpirationDate,
+    formatedCardNumber
+}) => {
 
     return (
         <TouchableOpacity className="p-4 rounded-lg border-[1px] bg-white border-gray-100">
@@ -15,8 +19,8 @@ export const CreditCardItemView: FC<ReturnType<typeof useCreditCardItemViewModel
                 </View>
 
                 <View className="flex-1">
-                    <Text className="text-base font-semibold">{creditCard.number}</Text>
-                    <Text className="text-sm text-gray-500 mt-1">Vencimento: {creditCard.expirationDate.toString()}</Text>
+                    <Text className="text-base">Cartão final {formatedCardNumber}</Text>
+                    <Text className="text-sm text-gray-500 mt-1">{formartedExpirationDate}</Text>
                 </View>
 
                 <TouchableOpacity>

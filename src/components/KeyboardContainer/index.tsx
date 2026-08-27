@@ -14,9 +14,10 @@ export const KeyboardContainer: FC<Props> = ({ children }) => {
                     contentContainerStyle={{ flexGrow: 1 }}
                     keyboardShouldPersistTaps="handled"
                     showsVerticalScrollIndicator={false}
+                    bounces={false}
                 >
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                        <View className="flex-1">
+                        <View className="grow">
                             {children}
                         </View>
                     </TouchableWithoutFeedback>

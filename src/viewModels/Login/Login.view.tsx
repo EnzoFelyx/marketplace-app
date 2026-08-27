@@ -10,9 +10,9 @@ import { useLoginViewModel } from "./useLogin.viewModel"
 export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({ control, onSubmit }) => {
     return (
         <KeyboardContainer>
-            <View className="flex-1 justify-center items-center px-[40px]">
+            <View className="grow justify-center items-center px-[40px]">
 
-                <View className="flex-1 w-full items-center justify-center">
+                <View className="grow w-full items-center justify-center">
 
                     <AuthFormHeader
                         title="Acesse sua conta"
@@ -44,7 +44,7 @@ export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({ control, o
 
                 </View>
 
-                <View className="flex-2 pb-16">
+                <View className="w-full mt-12 pb-16">
                     <Text className="text-base mb-6 text-gray-300">Ainda não tem uma conta?</Text>
                     <Button variant="outline" onPress={() => router.push("/(public)/register")} rightIcon="arrow-forward">
                         Registro

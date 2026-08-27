@@ -56,6 +56,7 @@ export const ReviewView: FC<ReturnType<typeof useReview>> = ({
                         textAlign="left"
                         containerClassName="mb-8"
                         className="h-[150px]"
+                        inBottomSheet
                     />
 
                     <View className="flex-row gap-3 mb-8">

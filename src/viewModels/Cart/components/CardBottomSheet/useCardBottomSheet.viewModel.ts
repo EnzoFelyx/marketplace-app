@@ -1,4 +1,5 @@
 import { useCreateCreditCardMutation } from "@/shared/queries/credit-cards/use-create-credit-card.mutation"
+import { useBottomSheetStore } from "@/shared/store/bottomsheet-store"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
 import { creditCardFormData, creditCardSchema } from "./credit-card.schema"
@@ -6,6 +7,8 @@ import { creditCardFormData, creditCardSchema } from "./credit-card.schema"
 export const useCardBottomSheetViewModel = () => {
 
     const createCreditCardMutation = useCreateCreditCardMutation()
+
+    const { close: closeBottomSheet } = useBottomSheetStore()
 
     const { control, handleSubmit, reset, watch, clearErrors } = useForm<creditCardFormData>({
         resolver: yupResolver(creditCardSchema),
@@ -50,6 +53,7 @@ export const useCardBottomSheetViewModel = () => {
         control,
         handleSubmit,
         expirationDateMask,
-        cardNumberMask
+        cardNumberMask,
+        closeBottomSheet
     }
 }

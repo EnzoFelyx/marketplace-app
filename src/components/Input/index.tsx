@@ -1,8 +1,12 @@
 import { Ionicons } from "@expo/vector-icons"
+import { BottomSheetTextInput } from "@gorhom/bottom-sheet"
+import { cssInterop } from "nativewind"
 import { FC } from "react"
 import { Pressable, Text, TextInput, TextInputProps, TouchableOpacity, View } from "react-native"
 import { inputVariants, InputVariantsProps } from "./input.variants"
 import { useInputViewModel } from "./useInputViewModel"
+
+const StyledBottomSheetTextInput = cssInterop(BottomSheetTextInput, { className: "style" })
 
 export interface InputProps extends TextInputProps, InputVariantsProps {
     label?: string
@@ -11,6 +15,7 @@ export interface InputProps extends TextInputProps, InputVariantsProps {
     containerClassName?: string
     mask?: (value: string) => void | string
     error?: string
+    inBottomSheet?: boolean
 }
 
 export const Input: FC<InputProps> = ({
@@ -28,8 +33,11 @@ export const Input: FC<InputProps> = ({
     mask,
     isDisable,
     error,
+    inBottomSheet = false,
     ...textInputProps
 }) => {
+
+    const FieldComponent = inBottomSheet ? StyledBottomSheetTextInput : TextInput
 
     const {
         getIconColor,
@@ -71,7 +79,7 @@ export const Input: FC<InputProps> = ({
                     />
                 }
 
-                <TextInput
+                <FieldComponent
                     onChangeText={handleTextChange}
                     value={value}
                     onBlur={handleBlur}

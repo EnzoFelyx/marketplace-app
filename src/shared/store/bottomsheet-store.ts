@@ -4,6 +4,7 @@ import { create } from "zustand";
 interface ConfigProps {
     snapPoints?: string[]
     enablePanDownToClose?: boolean
+    keyboardBehavior?: "interactive" | "extend" | "fillParent"
 }
 
 interface Props {
@@ -17,7 +18,8 @@ interface Props {
 
 const defaultConfig: ConfigProps = {
     snapPoints: ["80%", "90%"],
-    enablePanDownToClose: true
+    enablePanDownToClose: true,
+    keyboardBehavior: "extend"
 }
 
 export const useBottomSheetStore = create<Props>((set) => ({

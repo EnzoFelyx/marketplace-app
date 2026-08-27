@@ -3,7 +3,7 @@ import { Input } from "@/components/Input";
 import { colors } from "@/styles/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { FC } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { useCardBottomSheetViewModel } from "./useCardBottomSheet.viewModel";
 import { InputController } from "@/components/InputController";
 
@@ -12,16 +12,18 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
     handleCreateCreditCard,
     handleSubmit,
     expirationDateMask,
-    cardNumberMask
+    cardNumberMask,
+    closeBottomSheet
 }) => {
 
     return (
-        <ScrollView className="flex-1">
+        <View>
             <View className="p-8">
                 <View className="flex-row items-center justify-between mb-6">
                     <Text className="font-bold text-2xl text-center text-black">Adicionar cartão</Text>
                     <TouchableOpacity
                         className="w-8 items-center justify-center border border-gray-400 rounded-[10px]"
+                        onPress={closeBottomSheet}
                     >
                         <Ionicons name="close" size={24} color={colors.gray[400]} />
                     </TouchableOpacity>
@@ -34,6 +36,7 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                         leftIcon="person-outline"
                         label="NOME DO TITULAR"
                         placeholder="NOME COMPLETO"
+                        inBottomSheet
                     />
 
                     <InputController
@@ -45,6 +48,7 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                         mask={cardNumberMask}
                         keyboardType="numeric"
                         maxLength={19}
+                        inBottomSheet
                     />
 
                     <View className="flex-row gap-2">
@@ -58,6 +62,7 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                                 keyboardType="numeric"
                                 maxLength={5}
                                 mask={expirationDateMask}
+                                inBottomSheet
                             />
                         </View>
                         <View className="flex-1">
@@ -68,6 +73,7 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                                 label="CVV"
                                 placeholder="000"
                                 keyboardType="numeric"
+                                inBottomSheet
                             />
                         </View>
                     </View>
@@ -77,19 +83,20 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                     <View className="flex-1">
                         <Button
                             variant="outline"
+                            onPress={closeBottomSheet}
                         >
                             Cancelar
                         </Button>
                     </View>
 
                     <View className="flex-1">
-                        <Button>
-                            Cancelar
+                        <Button onPress={handleSubmit(handleCreateCreditCard)}>
+                            Adicionar
                         </Button>
                     </View>
                 </View>
 
             </View>
-        </ScrollView>
+        </View>
     )
 }

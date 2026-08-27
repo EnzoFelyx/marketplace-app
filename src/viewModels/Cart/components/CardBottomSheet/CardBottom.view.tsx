@@ -6,7 +6,9 @@ import { FC } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useCardBottomSheetViewModel } from "./useCardBottomSheet.viewModel";
 
-export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewModel>> = ({ }) => {
+export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewModel>> = ({
+    
+}) => {
 
     return (
         <ScrollView className="flex-1">

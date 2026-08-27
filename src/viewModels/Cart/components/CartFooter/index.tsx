@@ -1,16 +1,19 @@
 import { Button } from "@/components/Button"
 import { PriceText } from "@/components/PriceText"
+import { CreditCard } from "@/shared/interface/credit.card"
 import { useCartStore } from "@/shared/store/cart-store"
 import { colors } from "@/styles/colors"
 import { Ionicons } from "@expo/vector-icons"
 import { FC } from "react"
-import { Text, TouchableOpacity, View } from "react-native"
+import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from "react-native"
 
 interface Props {
     openCartBottomSheet: () => void
+    creditCards: CreditCard[]
+    loadingCreditCard: boolean
 }
 
-export const CartFooter: FC<Props> = ({ openCartBottomSheet }) => {
+export const CartFooter: FC<Props> = ({ openCartBottomSheet, creditCards, loadingCreditCard }) => {
 
     const { total } = useCartStore()
 
@@ -30,9 +33,9 @@ export const CartFooter: FC<Props> = ({ openCartBottomSheet }) => {
 
                     <Text className="text-[10px] font-semibold text-gray-500">CARTÕES DE CRÉDITO</Text>
 
-                    <TouchableOpacity 
-                    className="flex-row items-center"
-                    onPress={openCartBottomSheet}
+                    <TouchableOpacity
+                        className="flex-row items-center"
+                        onPress={openCartBottomSheet}
                     >
                         <Ionicons
                             name="card-outline"
@@ -43,9 +46,24 @@ export const CartFooter: FC<Props> = ({ openCartBottomSheet }) => {
                     </TouchableOpacity>
                 </View>
 
-                <Button className="mt-4">
+                {loadingCreditCard ? (
+                    <View className="py-4 items-center">
+                        <ActivityIndicator size={"small"} color={colors["purple-base"]} />
+                        <Text className="text-gray-500 text-sm mt-2">Carregando cartões...</Text>
+                    </View>
+                ) : (
+                    <FlatList
+                        data={creditCards}
+                        renderItem={({ item }) => (<Text>{item.titularName}</Text>)}
+                    />
+                )}
+
+                <Button
+                    className="mt-4"
+                >
                     Confirmar compra
                 </Button>
+
             </View>
         </View>
     )

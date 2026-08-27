@@ -11,7 +11,7 @@ export const useCreateCreditCardMutation = () => {
         mutationFn: (creditCardData: CreateCreditCardRequest) => createCreditCard(creditCardData),
         onSuccess: (response) => {
             Toast.success(response.message ?? "Cartão criado com sucesso!")
-            queryClient.cancelQueries({
+            queryClient.invalidateQueries({
                 queryKey: ["credit-cards"]
             })
         }

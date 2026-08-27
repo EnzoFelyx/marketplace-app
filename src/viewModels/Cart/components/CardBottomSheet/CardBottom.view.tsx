@@ -10,7 +10,6 @@ import { InputController } from "@/components/InputController";
 export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewModel>> = ({
     control,
     handleCreateCreditCard,
-    handleSubmit,
     expirationDateMask,
     cardNumberMask,
     closeBottomSheet
@@ -33,6 +32,7 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                     <InputController
                         control={control}
                         name="titularName"
+                        autoCapitalize="characters"
                         leftIcon="person-outline"
                         label="NOME DO TITULAR"
                         placeholder="NOME COMPLETO"
@@ -90,7 +90,7 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                     </View>
 
                     <View className="flex-1">
-                        <Button onPress={handleSubmit(handleCreateCreditCard)}>
+                        <Button onPress={handleCreateCreditCard}>
                             Adicionar
                         </Button>
                     </View>

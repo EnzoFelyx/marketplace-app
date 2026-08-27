@@ -12,7 +12,7 @@ export const CartView: FC<ReturnType<typeof useCartViewModel>> = ({
     products,
     openCartBottomSheet,
     creditCards,
-    loadingCreditCard
+    loadingCreditCard,
 }) => {
 
 

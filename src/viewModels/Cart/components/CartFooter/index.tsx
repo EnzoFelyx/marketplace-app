@@ -6,6 +6,7 @@ import { colors } from "@/styles/colors"
 import { Ionicons } from "@expo/vector-icons"
 import { FC } from "react"
 import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from "react-native"
+import { CreditCardItem } from "../CreditCardItem"
 
 interface Props {
     openCartBottomSheet: () => void
@@ -54,7 +55,8 @@ export const CartFooter: FC<Props> = ({ openCartBottomSheet, creditCards, loadin
                 ) : (
                     <FlatList
                         data={creditCards}
-                        renderItem={({ item }) => (<Text>{item.titularName}</Text>)}
+                        renderItem={({ item }) => <CreditCardItem creditCard={item} />}
+                        className="gap-2"
                     />
                 )}
 

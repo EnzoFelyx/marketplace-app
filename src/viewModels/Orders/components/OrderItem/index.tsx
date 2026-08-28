@@ -21,13 +21,13 @@ export const OrderItem: FC<Props> = ({ order }) => {
             />
 
             <View className="flex-1 justify-between">
-                <View className="flex-row justify-between items-start mb-6 gap-2">
+                <View className="flex-row justify-between items-start mb-4 gap-2">
                     <Text
                         className="text-sm font-semibold text-black flex-1"
                         numberOfLines={1}>
                         {order.productName}
                     </Text>
-                    <Text className="text-sm text-gray-500">{format(order.createdAt, "dd/MM/yyyy")}</Text>
+                    <Text className="text-sm text-gray-500">{format(order.createdAt, "dd/MM/yy")}</Text>
                 </View>
                 <View className="flex-row items-center mb-1">
                     <Text

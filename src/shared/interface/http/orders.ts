@@ -1,11 +1,10 @@
 export interface CreateOrdersInterface {
     creditCardId: number,
-    items: [
-        {
-            productId: number,
-            quantity: number
-        }
-    ]
+    items:
+    {
+        productId: number,
+        quantity: number
+    }[]
 }
 
 export interface OrdersResponse {

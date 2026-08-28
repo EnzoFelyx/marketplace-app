@@ -15,7 +15,9 @@ export const CartFooterView: FC<ReturnType<typeof useCartFooterViewModel> & Cart
     loadingCreditCard,
     total,
     selectedCreditCard,
-    setSelectedCreditCard
+    setSelectedCreditCard,
+    isOrderLoading,
+    submmitOrderMutation
 }) => {
 
     return (
@@ -67,6 +69,8 @@ export const CartFooterView: FC<ReturnType<typeof useCartFooterViewModel> & Cart
                 )}
 
                 <Button
+                    onPress={submmitOrderMutation}
+                    isLoading={isOrderLoading}
                     className="mt-4"
                 >
                     Confirmar compra

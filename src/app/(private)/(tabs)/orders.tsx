@@ -1,10 +1,11 @@
-import { Text, View } from "react-native";
+import { OrderView } from "@/viewModels/Orders/Order.view";
+import { useOrdersViewModel } from "@/viewModels/Orders/useOrder.viewModel";
 
 export default function Order() {
-    return (
-        <View className="flex-1 justify-center items-center">
-            <Text>Orders</Text>
-        </View>
 
+    const viewModel = useOrdersViewModel()
+
+    return (
+        <OrderView {...viewModel} />
     )
 }

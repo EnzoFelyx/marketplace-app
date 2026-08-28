@@ -11,7 +11,7 @@ export const useCartFooterViewModel = () => {
 
     const createOrderMutation = useSubmitOrdersMutation()
 
-    const { total, products } = useCartStore()
+    const { total, products, clearCart } = useCartStore()
 
 
     const submmitOrderMutation = async () => {
@@ -20,6 +20,7 @@ export const useCartFooterViewModel = () => {
             creditCardId: selectedCreditCard.id,
             items: products.map(({ id, quantity }) => ({ productId: id, quantity }))
         })
+        clearCart()
         router.push("/orders")
     }
 

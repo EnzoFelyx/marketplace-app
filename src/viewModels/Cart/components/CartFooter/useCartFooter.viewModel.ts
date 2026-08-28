@@ -1,3 +1,4 @@
+import { useModal } from "@/shared/hooks/useModal"
 import { CreditCard } from "@/shared/interface/credit.card"
 import { useGetCreditCardQuerys } from "@/shared/queries/credit-cards/use-get-credit-cards.query"
 import { useSubmitOrdersMutation } from "@/shared/queries/orders/use-submit-orders.mutation"
@@ -11,6 +12,8 @@ export const useCartFooterViewModel = () => {
 
     const createOrderMutation = useSubmitOrdersMutation()
 
+    const { showSucess } = useModal()
+
     const { total, products, clearCart } = useCartStore()
 
 
@@ -21,7 +24,15 @@ export const useCartFooterViewModel = () => {
             items: products.map(({ id, quantity }) => ({ productId: id, quantity }))
         })
         clearCart()
-        router.push("/orders")
+
+        showSucess({
+            title: "Sucesso!",
+            message: "Pedido feito com sucesso.",
+            buttonText: "Ver pedidos",
+            onButtonPress: () => {
+                router.push("/orders")
+            }
+        })
     }
 
     const { data: creditCards = [], isLoading: loadingCreditCard } = useGetCreditCardQuerys()

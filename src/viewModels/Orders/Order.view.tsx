@@ -5,10 +5,17 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import { OrderItem } from "./components/OrderItem"
 import { EmptyOrder } from "./components/EmptyOrder"
 import { HeaderOrder } from "./components/HeaderOrder"
+import { ErrorOrders } from "./components/ErrorOrders"
+import { LoadingOrder } from "./components/LoadingOrder"
 
 export const OrderView: FC<ReturnType<typeof useOrdersViewModel>> = ({
-    orders
+    orders,
+    error,
+    isLoading
 }) => {
+
+    if (error) return <ErrorOrders />
+    if (isLoading) return <LoadingOrder />
 
     return (
         <SafeAreaView className="flex-1" edges={["top"]}>

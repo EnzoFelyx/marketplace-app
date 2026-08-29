@@ -2,6 +2,7 @@ import { LoginHTTPParams } from "@/shared/interface/http/login"
 import { useMutation } from "@tanstack/react-query"
 import * as authService from "../../services/auths.service"
 import { useUserStore } from "@/shared/store/user-store"
+import { Toast } from "toastify-react-native"
 
 export const useLoginMutation = () => {
 
@@ -13,7 +14,7 @@ export const useLoginMutation = () => {
             setSession(response)
         },
         onError: (error) => {
-            console.log(error)
+            Toast.error(error.message ?? "Senha inválida", "top")
         }
     })
 

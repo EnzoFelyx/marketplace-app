@@ -64,7 +64,7 @@ export const ProfileView: React.FC<ReturnType<typeof useProfileViewModel>> = ({
                 <InputController
                     control={control}
                     name="password"
-                    label="SENHA"
+                    label="SENHA ATUAL"
                     leftIcon="lock-closed-outline"
                     secureTextEntry
                     placeholder="Sua senha"
@@ -72,11 +72,11 @@ export const ProfileView: React.FC<ReturnType<typeof useProfileViewModel>> = ({
 
                 <InputController
                     control={control}
-                    name="confirmPassword"
-                    label="CONFIRMAR SENHA"
+                    name="newPassword"
+                    label="NOVA SENHA"
                     leftIcon="lock-closed-outline"
                     secureTextEntry
-                    placeholder="Confirme a senha"
+                    placeholder="Sua sova senha"
                 />
 
                 <Button className="mt-6" onPress={onSubmit} isLoading={isSubmitting}>

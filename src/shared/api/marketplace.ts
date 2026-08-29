@@ -49,8 +49,6 @@ export class MarketPlaceApiClient {
 
         this.instance.interceptors.response.use((response) => response,
             async (error) => {
-                
-                alert("Sessão expirada!")
 
                 const originalRequest = error.config
 

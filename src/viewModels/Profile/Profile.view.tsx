@@ -12,7 +12,8 @@ import { HeaderProfile } from "./components/HeaderProfile";
 export const ProfileView: React.FC<ReturnType<typeof useProfileViewModel>> = ({
     avatarURI,
     control,
-    onSubmit
+    onSubmit,
+    isSubmitting
 }) => {
 
     return (
@@ -77,7 +78,7 @@ export const ProfileView: React.FC<ReturnType<typeof useProfileViewModel>> = ({
                     placeholder="Confirme a senha"
                 />
 
-                <Button className="mt-6" onPress={onSubmit}>
+                <Button className="mt-6" onPress={onSubmit} isLoading={isSubmitting}>
                     Atualizar cadastro
                 </Button>
             </ScrollView>

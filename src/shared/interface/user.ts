@@ -5,5 +5,4 @@ export interface UserInterface {
     avatarUrl: string
     phone: string
     createdAt: string
-
 }

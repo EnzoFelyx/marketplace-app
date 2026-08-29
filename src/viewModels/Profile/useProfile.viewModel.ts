@@ -1,16 +1,19 @@
-import { useForm } from "react-hook-form"
-import { ProfileFormData, profileScheme } from "./profile.scheme"
+import { useUpdateProfileMutation } from "@/shared/queries/profile/use-update.profile.mutation"
+import { useUserStore } from "@/shared/store/user-store"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useState } from "react"
-import { useUserStore } from "@/shared/store/user-store"
+import { useForm } from "react-hook-form"
+import { ProfileFormData, profileScheme } from "./profile.scheme"
 
 export const useProfileViewModel = () => {
 
     const { user } = useUserStore()
 
+    const updateProfileData = useUpdateProfileMutation()
+
     const [avatarURI, setAvatarURI] = useState<string | null>(user?.avatarUrl ?? null)
 
-    const { control, handleSubmit, formState: { errors } } = useForm<ProfileFormData>({
+    const { control, handleSubmit, formState: { errors, isSubmitting } } = useForm<ProfileFormData>({
         resolver: yupResolver(profileScheme),
         defaultValues: {
             name: user?.name ?? "",
@@ -21,13 +24,21 @@ export const useProfileViewModel = () => {
         }
     })
 
-    const onSubmit = handleSubmit(async () => {
+    const validatePassword = (userData: ProfileFormData) => {
+        if (!userData.password) return true
+        if (userData.password === userData.newPassword && userData.password?.length > 0) return false
+        return true
+    }
 
+    const onSubmit = handleSubmit(async (userData) => {
+        if (!validatePassword(userData)) return
+        await updateProfileData.mutateAsync(userData)
     })
 
     return {
         onSubmit,
         control,
-        avatarURI
+        avatarURI,
+        isSubmitting
     }
 }

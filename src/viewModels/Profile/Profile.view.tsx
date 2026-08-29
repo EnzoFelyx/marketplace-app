@@ -13,13 +13,14 @@ export const ProfileView: React.FC<ReturnType<typeof useProfileViewModel>> = ({
     avatarURI,
     control,
     onSubmit,
-    isSubmitting
+    isSubmitting,
+    handleLogout
 }) => {
 
     return (
         <KeyboardContainer>
             <ScrollView className="flex-1 px-[40px]">
-                <HeaderProfile />
+                <HeaderProfile handleLogout={handleLogout} />
                 <TouchableOpacity
                     className="w-[120px] h-[120px] rounded-[12px] justify-center items-center bg-shape self-center mb-8 mt-6"
 

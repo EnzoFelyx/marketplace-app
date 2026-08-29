@@ -34,7 +34,7 @@ export const HomeHeader = () => {
 
                 <View>
                     <Text className="font-bold text-base">
-                        Olá, {user?.name.split(" ")[0] || "Usuário"}
+                        Olá, {user?.name?.split(" ")[0] || "Usuário"}
                     </Text>
 
                     <View className="flex-row items-center gap-2">

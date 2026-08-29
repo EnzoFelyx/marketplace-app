@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form"
 import { ProfileFormData, profileScheme } from "./profile.scheme"
 import { useModalStore } from "@/shared/store/modal-store"
 import { useCartStore } from "@/shared/store/cart-store"
+import { useImage } from "@/shared/hooks/useImage"
+import { CameraType } from "expo-image-picker"
+import { useUploadAvatarMutation } from "@/shared/queries/auth/use-upload-avatar.mutation"
 
 export const useProfileViewModel = () => {
 
@@ -17,6 +20,18 @@ export const useProfileViewModel = () => {
     const [avatarURI, setAvatarURI] = useState<string | null>(user?.avatarUrl ?? null)
 
     const { clearCart } = useCartStore()
+
+    const uploadAvatarMutation = useUploadAvatarMutation()
+
+    const { handleSelectImage } = useImage({
+        callBack: async (URI) => {
+            if (URI) {
+                const { url: responseUrl } = await uploadAvatarMutation.mutateAsync(URI)
+                setAvatarURI(responseUrl)
+            }
+        },
+        cameraType: CameraType.front
+    })
 
     const { showSelection } = useModal()
 
@@ -55,8 +70,8 @@ export const useProfileViewModel = () => {
             },
             {
                 variant: "danger",
-                onPress: () => { 
-                    logout() 
+                onPress: () => {
+                    logout()
                     clearCart()
                     closeModal()
                 },
@@ -71,6 +86,7 @@ export const useProfileViewModel = () => {
         control,
         avatarURI,
         isSubmitting,
-        handleLogout
+        handleLogout,
+        handleSelectImage,
     }
 }

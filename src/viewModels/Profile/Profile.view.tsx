@@ -14,7 +14,8 @@ export const ProfileView: React.FC<ReturnType<typeof useProfileViewModel>> = ({
     control,
     onSubmit,
     isSubmitting,
-    handleLogout
+    handleLogout,
+    handleSelectImage
 }) => {
 
     return (
@@ -23,7 +24,7 @@ export const ProfileView: React.FC<ReturnType<typeof useProfileViewModel>> = ({
                 <HeaderProfile handleLogout={handleLogout} />
                 <TouchableOpacity
                     className="w-[120px] h-[120px] rounded-[12px] justify-center items-center bg-shape self-center mb-8 mt-6"
-
+                    onPress={handleSelectImage}
                 >
                     {avatarURI ? (
                         <Image source={{ uri: resolveFileUrl(avatarURI) ?? "" }} className="w-full h-full rounded-[12px]" resizeMode="cover" />

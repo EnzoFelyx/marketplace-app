@@ -61,6 +61,7 @@ export const useFilterViewModel = () => {
         handleValueMinChange,
         selectedCategories: FilterState.selectedCategories,
         handleApplyFilters,
-        handleResetFilter
+        handleResetFilter,
+        closeModal: close
     }
 }

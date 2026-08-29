@@ -16,6 +16,7 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
     selectedCategories,
     handleApplyFilters,
     handleResetFilter,
+    closeModal
 }) => {
 
     return (
@@ -23,7 +24,7 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
             <View className="flex-row items-center justify-between p-4 px-6">
                 <Text className="text-lg font-bold text-black">Filtrar anúncios</Text>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={closeModal}>
                     <Ionicons name="close" size={20} color={colors["purple-base"]} />
                 </TouchableOpacity>
             </View>

@@ -3,7 +3,7 @@ import { Button } from "@/components/Button";
 import { InputController } from "@/components/InputController";
 import { KeyboardContainer } from "@/components/KeyboardContainer";
 import { router } from "expo-router";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { useRegisterViewModal } from "./useRegister.viewModel";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -16,7 +16,7 @@ export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = (
 
     return (
         <KeyboardContainer>
-            <ScrollView className="flex-1 px-[40px]">
+            <View className="flex-1 px-[40px]">
                 <AuthFormHeader
                     title="Crie sua conta"
                     subtitle="Informe seus dados pessoais e de acesso"
@@ -88,7 +88,7 @@ export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = (
                     </Button>
                 </View>
 
-            </ScrollView>
+            </View>
         </KeyboardContainer>
     )
 }

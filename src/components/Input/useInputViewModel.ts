@@ -66,6 +66,7 @@ export const useInputViewModel = ({
     }
 
     return {
+        inputRef,
         handleBlur,
         handleFocus,
         getIconColor,

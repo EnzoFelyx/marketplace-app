@@ -40,6 +40,7 @@ export const Input: FC<InputProps> = ({
     const FieldComponent = inBottomSheet ? StyledBottomSheetTextInput : TextInput
 
     const {
+        inputRef,
         getIconColor,
         handleBlur,
         handleFocus,
@@ -68,7 +69,7 @@ export const Input: FC<InputProps> = ({
     return (
         <View className={styles.container({ className: containerClassName })}>
             <Text className={styles.label()}>{label}</Text>
-            <Pressable className={styles.wrapper()}>
+            <Pressable className={styles.wrapper()} onPress={handleWrapperPress}>
 
                 {leftIcon &&
                     <Ionicons
@@ -80,6 +81,7 @@ export const Input: FC<InputProps> = ({
                 }
 
                 <FieldComponent
+                    ref={inputRef as React.Ref<any>}
                     onChangeText={handleTextChange}
                     value={value}
                     onBlur={handleBlur}

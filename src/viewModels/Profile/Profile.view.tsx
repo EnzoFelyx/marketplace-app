@@ -3,7 +3,7 @@ import { Button } from "@/components/Button";
 import { InputController } from "@/components/InputController";
 import { KeyboardContainer } from "@/components/KeyboardContainer";
 import { router } from "expo-router";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useProfileViewModel } from "./useProfile.viewModel";
 import { resolveFileUrl } from "@/shared/utils/resolve-file-url";
@@ -19,7 +19,7 @@ export const ProfileView: React.FC<ReturnType<typeof useProfileViewModel>> = ({
 
     return (
         <KeyboardContainer>
-            <ScrollView className="flex-1 px-[40px]">
+            <View className="flex-1 px-[40px]">
                 <HeaderProfile handleLogout={handleLogout} />
                 <TouchableOpacity
                     className="w-[120px] h-[120px] rounded-[12px] justify-center items-center bg-shape self-center mb-8 mt-6"
@@ -82,7 +82,7 @@ export const ProfileView: React.FC<ReturnType<typeof useProfileViewModel>> = ({
                 <Button className="mt-6" onPress={onSubmit} isLoading={isSubmitting}>
                     Atualizar cadastro
                 </Button>
-            </ScrollView>
+            </View>
         </KeyboardContainer>
     )
 }

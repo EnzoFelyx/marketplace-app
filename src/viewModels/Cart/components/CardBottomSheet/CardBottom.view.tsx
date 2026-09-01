@@ -17,7 +17,8 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
     handleFieldBlur,
     handleFieldFocus,
     isFlipped,
-    focusedField
+    focusedField,
+    CardData
 }) => {
 
     return (
@@ -33,7 +34,7 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                     </TouchableOpacity>
                 </View>
 
-                <CreditCard isFlipped={isFlipped} focusedField={focusedField}/>
+                <CreditCard CardData={CardData} isFlipped={isFlipped} focusedField={focusedField}/>
 
                 <View className="mt-6 gap-4">
                     <InputController
@@ -86,6 +87,7 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                                 label="CVV"
                                 placeholder="000"
                                 onFocus={() => handleFieldFocus("cvv")}
+                                maxLength={3}
                                 onBlur={handleFieldBlur}
                                 keyboardType="numeric"
                                 inBottomSheet

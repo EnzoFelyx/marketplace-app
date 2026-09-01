@@ -1,18 +1,20 @@
+import clsx from "clsx"
+import { LinearGradient } from "expo-linear-gradient"
 import { FC } from "react"
 import { Text, View } from "react-native"
-import { useCreditCardViewModel } from "./useCreditCard.viewModel"
-import { FocusedField } from "../../useCardBottomSheet.viewModel"
-import { colors } from "@/styles/colors"
 import Animated from "react-native-reanimated"
-import { LinearGradient } from "expo-linear-gradient"
-import clsx from "clsx"
+import { CardData } from "."
+import { FocusedField } from "../../useCardBottomSheet.viewModel"
+import { useCreditCardViewModel } from "./useCreditCard.viewModel"
 
 const PURPLE_GRADIANT: readonly [string, string, string] = ["#5b3a8f", "#6b5ca5", "#7b6cb5"]
 
-export const CreditCardView: FC<ReturnType<typeof useCreditCardViewModel> & { focusedField: FocusedField | null }> = ({
+export const CreditCardView: FC<ReturnType<typeof useCreditCardViewModel> & { focusedField: FocusedField | null } & { CardData: CardData }> = ({
     focusedField,
     backAnimatedStyle,
-    frontAnimatedStyle
+    frontAnimatedStyle,
+    CardData,
+    formatCardNumber
 }) => {
 
     return (
@@ -36,7 +38,9 @@ export const CreditCardView: FC<ReturnType<typeof useCreditCardViewModel> & { fo
                     <View className={clsx("py-2 px-1 rounded-lg mb-6", {
                         "bg-white/20": focusedField === "number",
                     })}>
-                        <Text className="text-white text-lg tracking-widest text-center">123</Text>
+                        <Text className="text-white text-lg tracking-widest text-center">
+                            {formatCardNumber(CardData.number)}
+                        </Text>
                     </View>
 
                     <View className="flex-row justify-between items-end">
@@ -44,7 +48,9 @@ export const CreditCardView: FC<ReturnType<typeof useCreditCardViewModel> & { fo
                             "bg-white/20": focusedField === "name"
                         })}>
                             <Text className="text-white text-sm font-bold uppercase">PORTADOR</Text>
-                            <Text className="text-white text-sm font-bold uppercase">NOME DO TITULAR</Text>
+                            <Text className="text-white text-sm font-bold uppercase">
+                                {CardData.name.length ? CardData.name : "NOME DO TITULAR"}
+                            </Text>
                         </View>
 
 
@@ -52,7 +58,9 @@ export const CreditCardView: FC<ReturnType<typeof useCreditCardViewModel> & { fo
                             "bg-white/20": focusedField === "expiry"
                         })}>
                             <Text className="text-white text-xs mb-1 font-semibold">VALIDO ATÉ</Text>
-                            <Text className="text-white text-sm font-bold">MM/AA</Text>
+                            <Text className="text-white text-sm font-bold">
+                                {CardData.expiry.length ? CardData.expiry : "MM/AA"}
+                            </Text>
                         </View>
 
                     </View>
@@ -81,7 +89,9 @@ export const CreditCardView: FC<ReturnType<typeof useCreditCardViewModel> & { fo
                                 "bg-white": focusedField !== 'cvv',
                                 "bg-blue-light": focusedField === "cvv"
                             })}>
-                                <Text>...</Text>
+                                <Text>
+                                    {CardData.cvv.length ? CardData.cvv : "..."}
+                                </Text>
                             </View>
                         </View>
                     </View>

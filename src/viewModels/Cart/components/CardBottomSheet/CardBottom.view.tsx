@@ -6,13 +6,18 @@ import { FC } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { useCardBottomSheetViewModel } from "./useCardBottomSheet.viewModel";
 import { InputController } from "@/components/InputController";
+import { CreditCard } from "./components/CreditCard";
 
 export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewModel>> = ({
     control,
     handleCreateCreditCard,
     expirationDateMask,
     cardNumberMask,
-    closeBottomSheet
+    closeBottomSheet,
+    handleFieldBlur,
+    handleFieldFocus,
+    isFlipped,
+    focusedField
 }) => {
 
     return (
@@ -28,6 +33,8 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                     </TouchableOpacity>
                 </View>
 
+                <CreditCard isFlipped={isFlipped} focusedField={focusedField}/>
+
                 <View className="mt-6 gap-4">
                     <InputController
                         control={control}
@@ -36,6 +43,8 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                         leftIcon="person-outline"
                         label="NOME DO TITULAR"
                         placeholder="NOME COMPLETO"
+                        onFocus={() => handleFieldFocus("name")}
+                        onBlur={handleFieldBlur}
                         inBottomSheet
                     />
 
@@ -48,6 +57,8 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                         mask={cardNumberMask}
                         keyboardType="numeric"
                         maxLength={19}
+                        onFocus={() => handleFieldFocus("number")}
+                        onBlur={handleFieldBlur}
                         inBottomSheet
                     />
 
@@ -61,6 +72,8 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                                 placeholder="MM/AA"
                                 keyboardType="numeric"
                                 maxLength={5}
+                                onFocus={() => handleFieldFocus("expiry")}
+                                onBlur={handleFieldBlur}
                                 mask={expirationDateMask}
                                 inBottomSheet
                             />
@@ -72,6 +85,8 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
                                 leftIcon="lock-closed-outline"
                                 label="CVV"
                                 placeholder="000"
+                                onFocus={() => handleFieldFocus("cvv")}
+                                onBlur={handleFieldBlur}
                                 keyboardType="numeric"
                                 inBottomSheet
                             />

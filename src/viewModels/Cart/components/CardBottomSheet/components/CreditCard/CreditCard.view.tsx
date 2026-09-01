@@ -10,17 +10,20 @@ import clsx from "clsx"
 const PURPLE_GRADIANT: readonly [string, string, string] = ["#5b3a8f", "#6b5ca5", "#7b6cb5"]
 
 export const CreditCardView: FC<ReturnType<typeof useCreditCardViewModel> & { focusedField: FocusedField | null }> = ({
-    focusedField
+    focusedField,
+    backAnimatedStyle,
+    frontAnimatedStyle
 }) => {
 
     return (
         <View className="h-[192px]">
-            {/*     <Animated.View style={{
-                position: "absolute",
-                width: "100%",
-                height: 192,
-                backfaceVisibility: "hidden"
-            }}>
+            <Animated.View style={[
+                frontAnimatedStyle, {
+                    position: "absolute",
+                    width: "100%",
+                    height: 192,
+                    backfaceVisibility: "hidden"
+                }]}>
                 <LinearGradient
                     colors={PURPLE_GRADIANT}
                     start={{ x: 0, y: 0.5 }}
@@ -55,18 +58,19 @@ export const CreditCardView: FC<ReturnType<typeof useCreditCardViewModel> & { fo
                     </View>
 
                 </LinearGradient>
-            </Animated.View> */}
+            </Animated.View>
 
-            <Animated.View style={{
-                position: "absolute",
-                width: "100%",
-                height: 192,
-                backfaceVisibility: "hidden"
-            }}>
+            <Animated.View style={[
+                backAnimatedStyle, {
+                    position: "absolute",
+                    width: "100%",
+                    height: 192,
+                    backfaceVisibility: "hidden"
+                }]}>
                 <LinearGradient
                     colors={PURPLE_GRADIANT}
                     start={{ x: 0, y: 0.5 }}
-                    style={{ flex: 1, borderRadius: 15}}
+                    style={{ flex: 1, borderRadius: 15 }}
                 >
                     <View className="h-[40px] bg-black w-[100%] mt-[20px]" />
 

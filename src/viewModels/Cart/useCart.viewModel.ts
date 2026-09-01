@@ -11,7 +11,8 @@ export const useCartViewModel = () => {
 
     const openCartBottomSheet = () => {
         openCard({
-            content: createElement(CardBottomSheet)
+            content: createElement(CardBottomSheet),
+            config: { snapPoints: ["83%", "90%"] }
         })
     }
 

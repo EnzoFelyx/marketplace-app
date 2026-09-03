@@ -78,13 +78,22 @@ export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = (
                     placeholder="Confirme a senha"
                 />
 
-                <Button className="mt-6" onPress={onSubmit}>
-                    Registrar
+                <Button
+                    className="mt-6"
+                    onPress={onSubmit}
+                    rightIcon="arrow-forward"
+                >
+                    Cadastrar
                 </Button>
+
                 <View className="mt-16">
                     <Text className="text-base text-gray-300 mb-6">Já tem uma conta?</Text>
-                    <Button variant="outline" onPress={() => router.push("/(public)/login")}>
-                        Login
+                    <Button 
+                    variant="outline" 
+                    onPress={() => router.push("/(public)/login")}
+                    rightIcon="arrow-forward"
+                    >
+                        Acessar
                     </Button>
                 </View>
 

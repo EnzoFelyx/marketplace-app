@@ -18,7 +18,7 @@ export const SearchInput: FC<Props> = ({setSearchInputText, inputValue}) => {
 
     return (
         <View className="mb-3 mt-6">
-            <Text className="text-2xl font-bold mt-6">
+            <Text className="text-lg font-bold mt-6">
                 Explore Produtos
             </Text>
             <View className="flex-row">

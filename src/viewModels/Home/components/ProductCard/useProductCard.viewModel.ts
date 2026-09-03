@@ -15,7 +15,7 @@ export const useProductCardViewModel = ({ product }: Props) => {
 
     const displayName = formatProductName(product.name)
 
-    const formatRating = product.averageRating.toFixed(1).replace(",",".")
+    const formatRating = product.averageRating.toFixed(1).replace(".",",")
 
 
     return {

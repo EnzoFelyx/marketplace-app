@@ -24,12 +24,16 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
             <View className="flex-row items-center justify-between p-4 px-6">
                 <Text className="text-lg font-bold text-black">Filtrar anúncios</Text>
 
-                <TouchableOpacity onPress={closeModal}>
-                    <Ionicons name="close" size={20} color={colors["purple-base"]} />
+                <TouchableOpacity
+                    onPress={closeModal}
+                    className="w-7 h-7 items-center justify-center border-[2px] border-gray-400 rounded-[10px]"
+
+                >
+                    <Ionicons name="close" size={18} color={colors.gray[400]} />
                 </TouchableOpacity>
             </View>
 
-            <View className="p-4 px-6">
+            <View className="p-4 px-6 mt-2">
                 <Text className="font-semibold text-base text-gray-300">VALOR</Text>
 
                 <View className="flex-row mb-4 w-[100%]">
@@ -57,7 +61,7 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
                 {isLoading ? (
                     <Text>Carregando categorias...</Text>
                 ) : (
-                    <View className="mb-6 gap-3">
+                    <View className="my-6 gap-3">
                         {
                             productsCategory?.map(({ name, id }) => (
                                 <TouchableOpacity
@@ -67,7 +71,7 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
                                 >
                                     <Checkbox
                                         color={colors["purple-base"]}
-                                        className="mr-3 rounded-full"
+                                        className="mr-3 rounded-lg"
                                         onValueChange={() => handleCategoryToggle(id)}
                                         value={selectedCategories.includes(id)}
                                     />

@@ -15,7 +15,8 @@ export const ProfileView: React.FC<ReturnType<typeof useProfileViewModel>> = ({
     onSubmit,
     isSubmitting,
     handleLogout,
-    handleSelectImage
+    handleSelectImage,
+    phoneMask
 }) => {
 
     return (
@@ -34,7 +35,7 @@ export const ProfileView: React.FC<ReturnType<typeof useProfileViewModel>> = ({
                     }
                 </TouchableOpacity>
 
-                <Text className="text-base mt-6 font-bold text-gray-500">Acesso</Text>
+                <Text className="text-base mt-6 font-bold text-gray-500">Dados pessoais</Text>
 
                 <InputController
                     control={control}
@@ -50,6 +51,9 @@ export const ProfileView: React.FC<ReturnType<typeof useProfileViewModel>> = ({
                     label="TELEFONE"
                     leftIcon="call-outline"
                     placeholder="(00) 00000-0000"
+                    mask={phoneMask}
+                    keyboardType="phone-pad"
+                    maxLength={15}
                 />
 
                 <Text className="text-base mt-6 font-bold text-gray-500">Acesso</Text>

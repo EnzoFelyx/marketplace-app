@@ -5,6 +5,7 @@ import { useUpdateProfileMutation } from "@/shared/queries/profile/use-update.pr
 import { useCartStore } from "@/shared/store/cart-store"
 import { useModalStore } from "@/shared/store/modal-store"
 import { useUserStore } from "@/shared/store/user-store"
+import { phoneMask, unmaskPhone } from "@/shared/utils/phone-mask"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { CameraType } from "expo-image-picker"
 import { useForm } from "react-hook-form"
@@ -38,7 +39,7 @@ export const useProfileViewModel = () => {
         defaultValues: {
             name: user?.name ?? "",
             email: user?.email ?? "",
-            phone: user?.phone ?? "",
+            phone: phoneMask(user?.phone ?? ""),
             newPassword: undefined,
             password: undefined
         }
@@ -52,7 +53,10 @@ export const useProfileViewModel = () => {
 
     const onSubmit = handleSubmit(async (userData) => {
         if (!validatePassword(userData)) return
-        await updateProfileData.mutateAsync(userData)
+        await updateProfileData.mutateAsync({
+            ...userData,
+            phone: unmaskPhone(userData.phone)
+        })
     })
 
     const handleLogout = () => showSelection({
@@ -84,5 +88,6 @@ export const useProfileViewModel = () => {
         isSubmitting,
         handleLogout,
         handleSelectImage,
+        phoneMask,
     }
 }

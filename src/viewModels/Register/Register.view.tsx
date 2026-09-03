@@ -11,7 +11,8 @@ export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = (
     onSubmit,
     control,
     handleSelectAvatar,
-    avatarURI
+    avatarURI,
+    phoneMask
 }) => {
 
     return (
@@ -48,6 +49,9 @@ export const RegisterView: React.FC<ReturnType<typeof useRegisterViewModal>> = (
                     label="TELEFONE"
                     leftIcon="call-outline"
                     placeholder="(00) 00000-0000"
+                    mask={phoneMask}
+                    keyboardType="phone-pad"
+                    maxLength={15}
                 />
 
                 <Text className="text-base mt-6 font-bold text-gray-500">Acesso</Text>

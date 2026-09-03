@@ -1,5 +1,6 @@
 import { useImage } from "@/shared/hooks/useImage"
 import { useUploadAvatarMutation } from "@/shared/queries/auth/use-upload-avatar.mutation"
+import { phoneMask, unmaskPhone } from "@/shared/utils/phone-mask"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { CameraType } from "expo-image-picker"
 import { useState } from "react"
@@ -49,7 +50,10 @@ export const useRegisterViewModal = () => {
     const onSubmit = handleSubmit(
         async (useData) => {
             const { confirmPassword, ...registerData } = useData
-            await userRegisterMutation.mutateAsync(registerData)
+            await userRegisterMutation.mutateAsync({
+                ...registerData,
+                phone: unmaskPhone(registerData.phone)
+            })
 
         },
     )
@@ -59,6 +63,7 @@ export const useRegisterViewModal = () => {
         onSubmit,
         errors,
         handleSelectAvatar,
-        avatarURI
+        avatarURI,
+        phoneMask
     }
 }

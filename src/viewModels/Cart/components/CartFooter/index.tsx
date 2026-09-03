@@ -1,4 +1,3 @@
-import { CreditCard } from "@/shared/interface/credit.card"
 import { FC } from "react"
 import { CartFooterView } from "./CartFooter.view"
 import { useCartFooterViewModel } from "./useCartFooter.viewModel"

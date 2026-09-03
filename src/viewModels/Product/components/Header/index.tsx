@@ -16,6 +16,8 @@ export const Header: FC<Props> = ({ productDetails, handleOpenReview }) => {
 
     const photo = resolveFileUrl(productDetails?.photo)
 
+    const formatMeasure = (value: string | number) => String(value).replace(/\./g, ',')
+
     return (
         <>
             <View className="pb-5 items-start">
@@ -46,7 +48,7 @@ export const Header: FC<Props> = ({ productDetails, handleOpenReview }) => {
             </View>
 
             <View className="bg-background py-[8px]">
-                <View className="flex-row justify-between items-baseline mb-4">
+                <View className="flex-row justify-between items-baseline my-6">
                     <Text className="text-xl text-black font-bold max-w-[65%]">{productDetails.name}</Text>
                     <View>
                         <PriceText
@@ -75,24 +77,24 @@ export const Header: FC<Props> = ({ productDetails, handleOpenReview }) => {
                     <View className="mb-4">
                         {productDetails.width && (
                             <Text className="text-base text-gray-500 mb-1">
-                                <Text className="text-black">Largura:</Text> {productDetails.width}
+                                <Text className="text-black">Largura:</Text> {formatMeasure(productDetails.width)}
                             </Text>
                         )}
 
                         {productDetails.height && (
                             <Text className="text-base text-gray-500 mb-1">
-                                <Text className="text-black">Altura:</Text> {productDetails.height}
+                                <Text className="text-black">Altura:</Text> {formatMeasure(productDetails.height)}
                             </Text>
                         )}
                     </View>
                 )}
 
-                <View className="mb-6">
+                <View className="mb-6 gap-2">
                     <Text className="text-base font-bold text-black">Categoria</Text>
                     <Text className="text-base text-gray-500">{productDetails.category.name}</Text>
                 </View>
 
-                <View className="flex-row justify-between items-center py-6 border-t border-gray-200">
+                <View className="flex-row justify-between items-center py-6 border-t border-gray-100">
                     <Text className="text-lg font-bold text-black">Avaliações</Text>
 
                     <TouchableOpacity onPress={handleOpenReview}>

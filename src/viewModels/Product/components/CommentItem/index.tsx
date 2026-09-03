@@ -38,7 +38,7 @@ export const CommentItem: FC<Props> = ({ comment }) => {
                         <Text className="text-base font-medium text-black">{comment.user.name}</Text>
                         {isCurrentUser && (
                             <View className="bg-blue-base px-2 py-1 rounded-full ml-2">
-                                <Text className="text-white text-xs font-bold">Você</Text>
+                                <Text className="text-white text-xs font-semibold">VOCÊ</Text>
                             </View>
 
                         )}

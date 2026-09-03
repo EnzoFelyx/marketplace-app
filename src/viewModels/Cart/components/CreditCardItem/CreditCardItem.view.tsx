@@ -19,7 +19,7 @@ export const CreditCardItemView: FC<ReturnType<typeof useCreditCardItemViewModel
         return (
             <TouchableOpacity
                 onPress={() => setSelectedCreditCard(creditCard)}
-                className={`p-4 rounded-lg border-[1px] bg-white ${isSelectted ? "border-purple-base" : "border-gray-200"}`}
+                className={`p-4 rounded-lg border-[1px] bg-white ${isSelectted ? "border-purple-base" : "border-gray-100"}`}
             >
                 <View className="flex-row justify-between">
                     <View className="mr-4">

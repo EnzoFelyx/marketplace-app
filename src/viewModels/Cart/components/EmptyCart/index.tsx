@@ -11,11 +11,11 @@ export const EmptyCart = () => {
         <SafeAreaView className="flex-1">
             <View className="flex-1 items-center px-16 pt-16">
 
-                <Ionicons name="cart-outline" size={80} color={colors.gray[200]} />
+                <Ionicons name="cart-outline" size={60} color={colors.gray[200]} />
 
-                <Text className="text-xl font-bold text-black mt-4 mb-4">Seu carrinho está vazio</Text>
+                <Text className="text-lg font-semibold text-black my-8">Seu carrinho está vazio</Text>
 
-                <Text className="text-base text-gray-400 text-center mb-8">
+                <Text className="text-base text-gray-400 text-center mb-10">
                     Explore o catálago de produtos e faça a sua primeira compra!
                 </Text>
 

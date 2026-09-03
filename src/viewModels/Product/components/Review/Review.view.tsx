@@ -38,7 +38,7 @@ export const ReviewView: FC<ReturnType<typeof useReview>> = ({
                     <Text className="text-gray-500 mt-4 text-center">Verificando avaliações existentes...</Text>
                 </View>
             ) : (
-                <View className="p-6">
+                <View className="p-6 gap-3">
                     <Text className="font-semibold text-base text-gray-300">Nota</Text>
 
                     <View className="flex-row items-center mb-6 gap-2">

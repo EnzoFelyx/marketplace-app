@@ -11,13 +11,13 @@ interface Props {
 
 export const CartFooter: FC<Props> = ({ product, handleAddToCart }) => {
     return (
-        <View className="fixed bg-white bottom-0 right-0 left-0 p-7 h-[126px] justify-between items-center flex-row">
+        <View className="fixed bg-white bottom-0 right-0 left-0 p-7 h-[100px] justify-between items-center shadow-sm flex-row">
 
             <PriceText value={Number(product.value)} />
 
             <Button
-                leftIcon="cart"
-                className=" w-[120px] h-[40px]"
+                leftIcon="cart-outline"
+                className=" w-[126px] h-[40px]"
                 onPress={handleAddToCart}
             >
                 Adicionar

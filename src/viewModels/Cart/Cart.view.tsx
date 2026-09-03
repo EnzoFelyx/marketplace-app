@@ -25,7 +25,7 @@ export const CartView: FC<ReturnType<typeof useCartViewModel>> = ({
                 ListFooterComponent={products.length > 0 ?
                     <CartFooter openCartBottomSheet={openCartBottomSheet} /> : null
                 }
-                contentContainerClassName="px-6"
+                contentContainerClassName="px-[16px]"
             />
         </SafeAreaView>
     )

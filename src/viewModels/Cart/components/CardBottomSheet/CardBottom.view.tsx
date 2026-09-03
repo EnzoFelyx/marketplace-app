@@ -108,7 +108,7 @@ export const CardBottomSheetView: FC<ReturnType<typeof useCardBottomSheetViewMod
 
                     <View className="flex-1">
                         <Button onPress={handleCreateCreditCard}>
-                            Adicionar
+                            Salvar
                         </Button>
                     </View>
                 </View>

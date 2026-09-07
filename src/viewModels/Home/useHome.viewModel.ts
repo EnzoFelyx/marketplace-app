@@ -38,11 +38,14 @@ export const useHomeViewModel = () => {
         handleLoadMore()
     }
 
+    const isInitialLoading = isLoading && !isRefetching
+
     return {
         handleLoadMore,
         handleRefresh,
         products,
         handleEndReached,
+        isInitialLoading,
         isLoading,
         hasNextPage,
         isFetchingNextPage,

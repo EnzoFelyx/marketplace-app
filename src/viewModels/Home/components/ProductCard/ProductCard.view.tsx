@@ -15,7 +15,7 @@ export const ProductCardView: FC<ReturnType<typeof useProductCardViewModel>> = (
     return (
         <TouchableOpacity
             onPress={() => router.push(`/product/${product.id}`)}
-            className="w-[48%] my-11 rounded-xl shadow-sm overflow-hidden p-[4px] bg-white mb-2"
+            className="w-[48%] my-2 rounded-xl shadow-sm overflow-hidden p-[4px] bg-white mb-2"
         >
             <View>
                 {productPhoto ? (

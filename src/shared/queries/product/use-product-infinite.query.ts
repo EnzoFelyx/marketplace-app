@@ -20,6 +20,11 @@ export const useProductInfiniteQuery = ({ filters }: ProductsInfinityQueryParams
     } = useInfiniteQuery({
         queryFn: async ({ pageParam }) => {
             try {
+                // TODO: remover — delay artificial para visualizar o skeleton
+                if (__DEV__) {
+                    await new Promise((resolve) => setTimeout(resolve, 500))
+                }
+
                 const response = await getProducts({
                     pagination: {
                         page: pageParam,

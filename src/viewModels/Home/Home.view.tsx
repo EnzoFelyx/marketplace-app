@@ -4,13 +4,14 @@ import { FlatList, Platform, RefreshControl } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Footer } from "./components/Footer"
 import { ProductCard } from "./components/ProductCard"
+import { ProductCardSkeletonList } from "./components/ProductCard/ProductCardSkeleton"
 import { RenderHeader } from "./components/RenderHeader"
 import { useHomeViewModel } from "./useHome.viewModel"
 
 export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
     products,
     handleEndReached,
-    isLoading,
+    isInitialLoading,
     hasNextPage,
     isFetchingNextPage,
     handleRefresh,
@@ -32,7 +33,8 @@ export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
                     alignItems: "flex-start"
                 }}
                 renderItem={({ item }) => <ProductCard product={item} />}
-                ListFooterComponent={<Footer isLoading={hasNextPage && Boolean(isLoading || isFetchingNextPage)} />}
+                ListEmptyComponent={isInitialLoading ? <ProductCardSkeletonList /> : null}
+                ListFooterComponent={<Footer isLoading={Boolean(hasNextPage && isFetchingNextPage)} />}
                 keyExtractor={({ id }) => `product-list-item-${id}`}
                 refreshControl={<RefreshControl
                     refreshing={isRefetching}

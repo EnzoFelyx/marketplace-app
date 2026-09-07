@@ -20,8 +20,8 @@ export const CartSucessModal: FC<Props> = ({
     return (
         <View className="bg-white rounded-xl p-6 w-full max-w-sm">
             <View className="items-center mb-4">
-                <View style={{ backgroundColor: "#dcfce7" }} className="w-16 h-16 rounded-full items-center justify-center mb-3 ">
-                    <Ionicons name="checkmark" size={32} color={colors.success} />
+                <View className="w-16 h-16 rounded-full items-center justify-center mb-3 bg-success-light">
+                    <Ionicons name="checkmark" size={32} color={colors.success.dark} />
                 </View>
 
                 <Text className="text-xl font-bold text-black text-center">Produto adicionado!</Text>

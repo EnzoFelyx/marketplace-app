@@ -8,9 +8,15 @@ export const colors = {
   white: '#fff',
   background: '#F6F5F7',
   shape: '#EDE9F2',
-  danger: '#DC3545',
-  success: '#28A745',
-  warning: '#FFC107',
+  danger: {
+    dark: '#DC3545',
+    light: '#fca5a5'
+  },
+  success: {
+    dark:'#28A745',
+    light: '#dcfce7'
+  },
+  warning: '#facc15',
   black: '#000000',
   gray: {
     100: '#ADADAD',

@@ -21,8 +21,8 @@ export const SucessModal: FC<SucessModalParams> = ({
     return (
         <View className="bg-white rounded-2xl p-6 w-[85%] max-w-sm mx-auto">
             <View className="items-center">
-                <View style={{ backgroundColor: "#dcfce7" }} className="mb-4 w-16 h-16 rounded-full items-center justify-center">
-                    <Ionicons name="checkmark-circle" color={colors.success} size={40} />
+                <View className="bg-success-light mb-4 w-16 h-16 rounded-full items-center justify-center">
+                    <Ionicons name="checkmark-circle" color={colors.success.dark} size={40} />
                 </View>
 
                 <Text className="text-xl font-bold text-black text-center mb-3">{title}</Text>

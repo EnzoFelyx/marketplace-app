@@ -18,7 +18,7 @@ export const SelectionModal: FC<SelectionModalProps> = ({
 }) => {
 
     const getButtonClass = (variant: SelectionVariant) => clsx("w-full py-3 px-4 rounded-lg items-center flex-row justify-center mb-2", {
-        "bg-danger": variant === "danger",
+        "bg-danger-dark": variant === "danger",
         "bg-blue-dark": variant === "secondary",
         "bg-purple-base": variant === "primary"
     })

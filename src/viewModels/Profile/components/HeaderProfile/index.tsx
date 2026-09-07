@@ -24,8 +24,8 @@ export const HeaderProfile: FC<Props> = ({ handleLogout }) => {
                 className="flex-row items-center gap-1"
                 onPress={handleLogout}
             >
-                <Ionicons name="log-out-outline" color={colors.danger} size={20} />
-                <Text className="text-danger text-base">Sair</Text>
+                <Ionicons name="log-out-outline" color={colors.danger.dark} size={20} />
+                <Text className="text-danger-dark text-base">Sair</Text>
             </TouchableOpacity>
         </View>
     )

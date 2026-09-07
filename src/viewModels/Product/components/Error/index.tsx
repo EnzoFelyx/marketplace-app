@@ -7,8 +7,8 @@ import { Text, View } from "react-native"
 export const Error = () => {
     return (
         <View className="flex-1 justify-center items-center bg-background px-6">
-            <Ionicons name="alert-circle" color={colors.danger} size={40} />
-            <Text className="text-lg text-center text-danger mt-5">
+            <Ionicons name="alert-circle" color={colors.danger.dark} size={40} />
+            <Text className="text-lg text-center text-danger-dark mt-5">
                 Ocorreu um erro ao buscar os detalhes do produto!
             </Text>
 

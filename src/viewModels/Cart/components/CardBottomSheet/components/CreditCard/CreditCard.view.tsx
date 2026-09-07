@@ -32,7 +32,7 @@ export const CreditCardView: FC<ReturnType<typeof useCreditCardViewModel> & { fo
                     style={{ flex: 1, borderRadius: 15, padding: 20 }}
                 >
                     <View className="flex-row justify-between items-center mb-4">
-                        <View className="w-12 h-8 rounded-md" style={{ backgroundColor: "#facc15" }} />
+                        <View className="w-12 h-8 rounded-md bg-warning" />
                     </View>
 
                     <View className={clsx("py-2 px-1 rounded-lg mb-6", {

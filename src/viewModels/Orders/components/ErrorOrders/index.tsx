@@ -7,11 +7,11 @@ export const ErrorOrders = () => {
 
     return (
         <View className="flex-1 items-center justify-center px-6">
-            <View style={{ backgroundColor: "#fca5a5" }} className="w-10 h-10 items-center justify-center rounded-full mb-6">
-                <Ionicons name="alert" color={colors.danger} size={23} />
+            <View className="w-10 h-10 items-center justify-center rounded-full mb-6 bg-danger-light">
+                <Ionicons name="alert" color={colors.danger.dark} size={23} />
             </View>
             <View className="flex-row items-center justify-center">
-                <Text className="text-xl text-danger font-bold">Falha ao carregar pedidos</Text>
+                <Text className="text-xl text-danger-dark font-bold">Falha ao carregar pedidos</Text>
             </View>
             <Button
                 className="mt-6"

@@ -66,7 +66,7 @@ export const useProfileViewModel = () => {
             {
                 text: "Continuar logado",
                 onPress: closeModal,
-                variant: "primary"
+                variant: "secondary"
             },
             {
                 variant: "danger",

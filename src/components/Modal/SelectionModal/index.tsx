@@ -19,7 +19,7 @@ export const SelectionModal: FC<SelectionModalProps> = ({
 
     const getButtonClass = (variant: SelectionVariant) => clsx("w-full py-3 px-4 rounded-lg items-center flex-row justify-center mb-2", {
         "bg-danger-dark": variant === "danger",
-        "bg-blue-dark": variant === "secondary",
+        "bg-white border border-purple-base": variant === "secondary",
         "bg-purple-base": variant === "primary"
     })
 
@@ -40,7 +40,10 @@ export const SelectionModal: FC<SelectionModalProps> = ({
                             className={getButtonClass(option.variant ?? "primary")}
                         >
                             {option.icon && <Ionicons name={option.icon} size={20} color={colors.white} className="mr-2" />}
-                            <Text className="font-bold text-white">{option.text}</Text>
+                            <Text className={clsx("font-bold", {
+                                "text-purple-base": option.variant === "secondary",
+                                "text-white": option.variant !== "secondary"
+                            })}>{option.text}</Text>
                         </TouchableOpacity>
                     ))
                 }

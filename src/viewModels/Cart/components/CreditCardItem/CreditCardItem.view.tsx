@@ -30,10 +30,6 @@ export const CreditCardItemView: FC<ReturnType<typeof useCreditCardItemViewModel
                         <Text className="text-base">Cartão final {formatedCardNumber}</Text>
                         <Text className="text-sm text-gray-500 mt-1">{formartedExpirationDate}</Text>
                     </View>
-
-                    <TouchableOpacity>
-                        <Ionicons name="pencil" size={18} color={isSelectted ? colors["purple-base"] : colors.gray[200]} />
-                    </TouchableOpacity>
                 </View>
             </TouchableOpacity>
         )

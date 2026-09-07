@@ -48,7 +48,11 @@ export const CreditCardView: FC<ReturnType<typeof useCreditCardViewModel> & { fo
                             "bg-white/20": focusedField === "name"
                         })}>
                             <Text className="text-white text-sm font-bold uppercase">PORTADOR</Text>
-                            <Text className="text-white text-sm font-bold uppercase">
+                            <Text
+                                numberOfLines={2}
+                                ellipsizeMode="tail"
+                                className="text-white text-sm font-bold uppercase"
+                            >
                                 {CardData.name.length ? CardData.name : "NOME DO TITULAR"}
                             </Text>
                         </View>

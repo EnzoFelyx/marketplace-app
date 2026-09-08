@@ -26,7 +26,6 @@ export const useCamera = (imagePicker: ImagePicker.ImagePickerOptions) => {
 
     const openCamera = useCallback(async (): Promise<string | null> => {
         setIsLoading(true)
-        console.log('chamei')
         try {
             const hasPermission = await requestCameraPermission()
             if (!hasPermission) return null

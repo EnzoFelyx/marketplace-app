@@ -1,5 +1,6 @@
 import { useUserStore } from "@/shared/store/user-store"
 import { useMutation } from "@tanstack/react-query"
+import { Toast } from "toastify-react-native"
 import { RegisterHTTPParams } from "../../interface/http/register"
 import * as authService from "../../services/auths.service"
 
@@ -14,7 +15,6 @@ export const useRegisterMutation = ({ onSucess }: Props = {}) => {
     const mutation = useMutation({
         mutationFn: (userData: RegisterHTTPParams) => authService.register(userData),
         onSuccess: (response) => {
-            console.log("REGISTER RESPONSE", response)
             setSession({
                 refreshToken: response.refreshToken,
                 token: response.token,
@@ -23,7 +23,7 @@ export const useRegisterMutation = ({ onSucess }: Props = {}) => {
             onSucess?.()
         },
         onError: (error) => {
-            console.log(error)
+            Toast.error(error.message ?? "Falha ao realizar cadastro", "top")
         }
     })
 

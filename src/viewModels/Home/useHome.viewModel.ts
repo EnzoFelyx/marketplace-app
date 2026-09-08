@@ -1,9 +1,7 @@
 import { useDebounce } from "@/shared/hooks/useDebounce"
 import { useProductInfiniteQuery } from "@/shared/queries/product/use-product-infinite.query"
-import { FilterState, useFilterStore } from "@/shared/store/use-filter-store"
+import { useFilterStore } from "@/shared/store/use-filter-store"
 import { useState } from "react"
-
-
 
 export const useHomeViewModel = () => {
 

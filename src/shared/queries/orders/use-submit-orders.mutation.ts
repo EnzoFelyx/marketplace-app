@@ -14,7 +14,6 @@ export const useSubmitOrdersMutation = () => {
             })
         },
         onError: (error) => {
-            console.log(error)
             Toast.error(error.message ?? "Falha ao realizar pedido", "top")
         }
     })

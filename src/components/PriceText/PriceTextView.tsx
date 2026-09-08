@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { usePriceTextViewModel } from "./usePricetextViewModel";
 import { Text, View } from "react-native";
+import { usePriceTextViewModel } from "./usePriceTextViewModel";
 
 export const PriceTextView: FC<ReturnType<typeof usePriceTextViewModel> & {
     classNameCurrency?: string
@@ -9,8 +9,6 @@ export const PriceTextView: FC<ReturnType<typeof usePriceTextViewModel> & {
     classNameCurrency,
     classNameValue,
     currencySymbol,
-    formatPrice,
-    value,
     valueText
 }) => {
 

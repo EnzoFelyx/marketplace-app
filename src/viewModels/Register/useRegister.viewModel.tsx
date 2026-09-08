@@ -41,7 +41,6 @@ export const useRegisterViewModal = () => {
         onSucess: async () => {
             if (avatarURI) {
                 const { url } = await uploadAvatarMutation.mutateAsync(avatarURI)
-                console.log({url})
                 updatedUser({ avatarUrl: url })
             }
         }

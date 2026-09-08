@@ -3,9 +3,16 @@ import axios, { AxiosInstance } from "axios";
 import { useUserStore } from "../store/user-store";
 
 const getBaseUrl = () => {
-    // API roda em outro PC na mesma rede, então usamos o IP de LAN
-    // para iOS e Android (físico ou emulador).
-    return "http://192.168.0.236:3001"
+    // Precisa ser acessado por dot notation para o Expo inlinar o valor no bundle.
+    const url = process.env.EXPO_PUBLIC_API_URL
+
+    if (!url) {
+        throw new Error(
+            "EXPO_PUBLIC_API_URL não definida. Copie .env.example para .env.local e informe o endereço da API."
+        )
+    }
+
+    return url
 }
 
 export const baseURL = getBaseUrl()

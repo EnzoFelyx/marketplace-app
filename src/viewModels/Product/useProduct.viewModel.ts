@@ -7,6 +7,7 @@ import { CartSucessModal } from "./components/CartSucessModal"
 import { router } from "expo-router"
 import { useBottomSheetStore } from "@/shared/store/bottomsheet-store"
 import { Review } from "./components/Review"
+import { localNotificationsService } from "@/shared/services/local-notifications.service"
 
 export const useProductViewModel = (productId: number) => {
 
@@ -67,6 +68,12 @@ export const useProductViewModel = (productId: number) => {
             name: productDetails.name,
             price: productDetails.value,
             image: productDetails.photo
+        })
+
+        localNotificationsService.scheduleCartReminder({
+            delayInMinutes: 30,
+            productId: productDetails.id,
+            productName: productDetails.name
         })
 
         openModal(createElement(CartSucessModal, {

@@ -58,7 +58,7 @@ const scheduleCartReminder = async ({
         return
     }
 
-    const notification = await Notifications.scheduleNotificationAsync({
+    await Notifications.scheduleNotificationAsync({
         identifier: NOTIFICATION_IDS.CART_REMINDER,
         content: {
             title: "Finalize a sua compra!",
@@ -73,11 +73,38 @@ const scheduleCartReminder = async ({
             seconds: delayInMinutes * 60,
         }
     })
-    return notification
+}
+
+const scheduleFeedbackNotification = async ({
+    delayInMinutes,
+    productId,
+    productName
+}: ScheduleNotificationParams) => {
+    const hasPermission = await requestPermission()
+    if (!hasPermission) {
+        console.log("Permissão para notificações não concedida.")
+        return
+    }
+    await Notifications.scheduleNotificationAsync({
+        identifier: NOTIFICATION_IDS.PURCHASE_FEEDBACK,
+        content: {
+            title: "Como foi a sua compra?",
+            body: `O produto ${productName} foi entregue. Conte-nos como foi a sua experiência.`,
+            data: {
+                type: "purchase-feedback",
+                productId: String(productId),
+            },
+        },
+        trigger: {
+            type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+            seconds: delayInMinutes * 60,
+        }
+    })
 }
 
 export const localNotificationsService = {
     setupNotificationChannel,
     scheduleCartReminder,
+    scheduleFeedbackNotification,
     requestPermission,
 }

@@ -2,6 +2,7 @@ import { useModal } from "@/shared/hooks/useModal"
 import { CreditCard } from "@/shared/interface/credit.card"
 import { useGetCreditCardQuerys } from "@/shared/queries/credit-cards/use-get-credit-cards.query"
 import { useSubmitOrdersMutation } from "@/shared/queries/orders/use-submit-orders.mutation"
+import { localNotificationsService } from "@/shared/services/local-notifications.service"
 import { useCartStore } from "@/shared/store/cart-store"
 import { router } from "expo-router"
 import { useState } from "react"
@@ -32,6 +33,12 @@ export const useCartFooterViewModel = () => {
             onButtonPress: () => {
                 router.push("/orders")
             }
+        })
+
+        localNotificationsService.scheduleFeedbackNotification({
+            delayInMinutes: 30,
+            productId: products[1].id,
+            productName: products[1].name
         })
     }
 

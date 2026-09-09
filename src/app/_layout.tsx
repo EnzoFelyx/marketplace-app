@@ -1,16 +1,16 @@
+import { Modal } from '@/components/Modal';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from "expo-router";
-import '../styles/global.css';
-import { Modal } from '@/components/Modal';
-import ToastManeger from 'toastify-react-native'
-import { useUserStore } from '@/shared/store/user-store';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import ToastManeger from 'toastify-react-native';
+import '../styles/global.css';
+import { useNotification } from '@/shared/hooks/useNotifications';
 
 const queryClient = new QueryClient()
 
 export default function RootLayout() {
 
-    const { token } = useUserStore()
+    useNotification()
 
     return (
         <GestureHandlerRootView className='flex-1'>

@@ -75,7 +75,7 @@ const scheduleCartReminder = async ({
     },
     trigger: {
       type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-      seconds: 5,
+      seconds: 10,
     },
   })
 }
@@ -100,16 +100,14 @@ const scheduleFeedbackNotification = async ({
       data: {
         type: 'purchase_feedback',
         productId: String(productId),
-        deepLink: `${DEEP_LINK}product/${productId}`,
+        deepLink: `${DEEP_LINK}product/${productId}?openFeedbackBottomsheet=true`,
       },
     },
     trigger: {
       type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-      seconds: 5,
+      seconds: 10,
     },
   })
-
-  console.log('[LocalNotifications] - Feedback notification scheduled')
 }
 
 export const localNotificationsService = {

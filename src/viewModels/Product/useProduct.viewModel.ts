@@ -2,14 +2,14 @@ import { useGetCommentsInfiniteQuery } from "@/shared/queries/product/use-get-pr
 import { useGetProductDetailsQuery } from "@/shared/queries/product/use-get-product-details"
 import { useCartStore } from "@/shared/store/cart-store"
 import { useModalStore } from "@/shared/store/modal-store"
-import { createElement } from "react"
+import { createElement, useEffect } from "react"
 import { CartSucessModal } from "./components/CartSucessModal"
 import { router } from "expo-router"
 import { useBottomSheetStore } from "@/shared/store/bottomsheet-store"
 import { Review } from "./components/Review"
 import { localNotificationsService } from "@/shared/services/local-notifications.service"
 
-export const useProductViewModel = (productId: number) => {
+export const useProductViewModel = (productId: number, openFeedbackBottomsheet?: boolean) => {
 
     const {
         data: productDetails,
@@ -93,6 +93,12 @@ export const useProductViewModel = (productId: number) => {
             }),
         })
     }
+
+    useEffect(()=> {
+        if(openFeedbackBottomsheet){
+            handleOpenReview()
+        }
+    },[openFeedbackBottomsheet, productDetails])
 
     return {
         productDetails,

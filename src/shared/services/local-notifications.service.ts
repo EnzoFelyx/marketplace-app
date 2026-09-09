@@ -1,110 +1,120 @@
-import { colors } from "@/styles/colors"
-import * as Notifications from "expo-notifications"
-import { Platform } from "react-native"
+import * as Notifications from 'expo-notifications'
+import { Platform } from 'react-native'
+import { colors } from '../../styles/colors'
 
-const DEFAULT_CHANNEL = "default"
+const DEFAULT_CHANNEL = 'default'
 
 const NOTIFICATION_IDS = {
-    CART_REMINDER: "cart-reminder",
-    PURCHASE_FEEDBACK: "purchase-feedback",
+  CART_REMINDER: 'cart-reminder',
+  PURCHASE_FEEDBACK: 'purchase-feedback',
 }
 
+const DEEP_LINK = 'marketplace-app://'
+
 Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-        shouldPlaySound: true,
-        shouldShowBanner: true,
-        shouldSetBadge: false,
-        shouldShowList: true,
-    })
+  handleNotification: async () => ({
+    shouldPlaySound: true,
+    shouldShowBanner: true,
+    shouldSetBadge: false,
+    shouldShowList: true,
+  }),
 })
 
-const requestPermission = async (): Promise<boolean> => {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync()
+const requestPermissions = async (): Promise<boolean> => {
+  const { status: existingStatus } = await Notifications.getPermissionsAsync()
 
-    let finalStatus = existingStatus
+  let finalStatus = existingStatus
 
-    if (existingStatus === "granted") {
-        const { status } = await Notifications.requestPermissionsAsync()
-        finalStatus = status
-    }
-    return finalStatus === "granted"
+  if (existingStatus !== 'granted') {
+    const { status } = await Notifications.requestPermissionsAsync()
+    finalStatus = status
+  }
+
+  return finalStatus === 'granted'
 }
 
 const setupNotificationChannel = async () => {
-    if (Platform.OS === "android") {
-        await Notifications.setNotificationChannelAsync(DEFAULT_CHANNEL, {
-            name: "Notificações do Marketplace",
-            importance: Notifications.AndroidImportance.HIGH,
-            vibrationPattern: [0, 250, 250, 250],
-            lightColor: colors["purple-base"],
-        })
-    }
+  if (Platform.OS === 'android') {
+    await Notifications.setNotificationChannelAsync(DEFAULT_CHANNEL, {
+      name: 'Notificações do Marketplace',
+      importance: Notifications.AndroidImportance.HIGH,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: colors['purple-base'],
+    })
+  }
 }
 
-interface ScheduleNotificationParams {
-    productName: string
-    productId: number
-    delayInMinutes: number
+interface ScheduleProductInterface {
+  productName: string
+  productId: number
+  delayInMinutes: number
 }
 
 const scheduleCartReminder = async ({
-    delayInMinutes,
-    productId,
-    productName
-}: ScheduleNotificationParams) => {
-    const hasPermission = await requestPermission()
-    if (!hasPermission) {
-        console.log("Permissão para notificações não concedida.")
-        return
-    }
+  productName,
+  productId,
+  delayInMinutes,
+}: ScheduleProductInterface) => {
+  const hasPermission = await requestPermissions()
 
-    await Notifications.scheduleNotificationAsync({
-        identifier: NOTIFICATION_IDS.CART_REMINDER,
-        content: {
-            title: "Finalize a sua compra!",
-            body: `O produto ${productName} ainda está esperando por você.`,
-            data: {
-                type: "cart-reminder",
-                productId: String(productId),
-            },
-        },
-        trigger: {
-            type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-            seconds: delayInMinutes * 60,
-        }
-    })
+  if (!hasPermission) {
+    console.log('[LocalNotifications] - Permission not granted')
+    return
+  }
+
+  await Notifications.scheduleNotificationAsync({
+    identifier: NOTIFICATION_IDS.CART_REMINDER,
+    content: {
+      title: 'Você esqueceu algo no carrinho!',
+      body: `O produto ${productName} está esperando por você. Finalize sua compra agora!`,
+      data: {
+        type: 'cart_reminder',
+        productId: String(productId),
+        deepLink: `${DEEP_LINK}cart`,
+      },
+    },
+    trigger: {
+      type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+      seconds: 5,
+    },
+  })
 }
 
 const scheduleFeedbackNotification = async ({
-    delayInMinutes,
-    productId,
-    productName
-}: ScheduleNotificationParams) => {
-    const hasPermission = await requestPermission()
-    if (!hasPermission) {
-        console.log("Permissão para notificações não concedida.")
-        return
-    }
-    await Notifications.scheduleNotificationAsync({
-        identifier: NOTIFICATION_IDS.PURCHASE_FEEDBACK,
-        content: {
-            title: "Como foi a sua compra?",
-            body: `O produto ${productName} foi entregue. Conte-nos como foi a sua experiência.`,
-            data: {
-                type: "purchase-feedback",
-                productId: String(productId),
-            },
-        },
-        trigger: {
-            type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-            seconds: delayInMinutes * 60,
-        }
-    })
+  productName,
+  productId,
+  delayInMinutes,
+}: ScheduleProductInterface) => {
+  const hasPermission = await requestPermissions()
+
+  if (!hasPermission) {
+    console.log('[LocalNotifications] - Permission not granted')
+    return
+  }
+
+  await Notifications.scheduleNotificationAsync({
+    identifier: `${NOTIFICATION_IDS.PURCHASE_FEEDBACK}-${productId}`,
+    content: {
+      title: '⭐️ Como foi a sua compra?',
+      body: `Você realizou o pedido do produto "${productName}". Envie um feedback do que achou do produto!`,
+      data: {
+        type: 'purchase_feedback',
+        productId: String(productId),
+        deepLink: `${DEEP_LINK}product/${productId}`,
+      },
+    },
+    trigger: {
+      type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+      seconds: 5,
+    },
+  })
+
+  console.log('[LocalNotifications] - Feedback notification scheduled')
 }
 
 export const localNotificationsService = {
-    setupNotificationChannel,
-    scheduleCartReminder,
-    scheduleFeedbackNotification,
-    requestPermission,
+  scheduleCartReminder,
+  requestPermissions,
+  setupNotificationChannel,
+  scheduleFeedbackNotification,
 }

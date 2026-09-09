@@ -4,13 +4,14 @@ import { Stack } from "expo-router";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import ToastManeger from 'toastify-react-native';
 import '../styles/global.css';
-import { useNotification } from '@/shared/hooks/useNotifications';
+import { useNotifications } from '@/shared/hooks/useNotifications';
+
 
 const queryClient = new QueryClient()
 
 export default function RootLayout() {
 
-    useNotification()
+    useNotifications()
 
     return (
         <GestureHandlerRootView className='flex-1'>

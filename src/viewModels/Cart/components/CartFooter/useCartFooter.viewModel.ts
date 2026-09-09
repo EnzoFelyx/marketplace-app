@@ -37,8 +37,8 @@ export const useCartFooterViewModel = () => {
 
         localNotificationsService.scheduleFeedbackNotification({
             delayInMinutes: 30,
-            productId: products[1].id,
-            productName: products[1].name
+            productId: products[0].id,
+            productName: products[0].name
         })
     }
 

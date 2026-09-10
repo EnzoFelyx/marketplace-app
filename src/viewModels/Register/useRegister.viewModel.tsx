@@ -8,10 +8,13 @@ import { useForm } from "react-hook-form"
 import { useRegisterMutation } from "../../shared/queries/auth/use-register.mutation"
 import { useUserStore } from "../../shared/store/user-store"
 import { RegisterFormData, registerScheme } from "./register.scheme"
+import { useOneSignal } from "@/shared/hooks/useOneSignal"
 
 export const useRegisterViewModal = () => {
 
     const { setSession, updatedUser } = useUserStore()
+
+    const { playerId } = useOneSignal()
 
     const [avatarURI, setAvatarURI] = useState<string | null>(null)
 
@@ -51,7 +54,8 @@ export const useRegisterViewModal = () => {
             const { confirmPassword, ...registerData } = useData
             await userRegisterMutation.mutateAsync({
                 ...registerData,
-                phone: unmaskPhone(registerData.phone)
+                phone: unmaskPhone(registerData.phone),
+                notificationToken: playerId
             })
 
         },

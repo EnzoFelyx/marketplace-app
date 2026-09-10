@@ -5,3 +5,9 @@ export interface FavoriteResponse {
     createdAt: string
 }
 
+export interface handleFavoriteResponse {
+    id: number,
+    productId: number,
+    userId: number,
+    createdAt: string
+}

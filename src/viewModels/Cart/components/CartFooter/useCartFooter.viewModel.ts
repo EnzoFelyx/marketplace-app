@@ -24,7 +24,6 @@ export const useCartFooterViewModel = () => {
             creditCardId: selectedCreditCard.id,
             items: products.map(({ id, quantity }) => ({ productId: id, quantity }))
         })
-        clearCart()
 
         showSucess({
             title: "Sucesso!",
@@ -40,6 +39,12 @@ export const useCartFooterViewModel = () => {
             productId: products[0].id,
             productName: products[0].name
         })
+
+        localNotificationsService.cancelNotifications(
+            localNotificationsService.NOTIFICATION_IDS.CART_REMINDER
+        )
+
+        clearCart()
     }
 
     const { data: creditCards = [], isLoading: loadingCreditCard } = useGetCreditCardQuerys()
